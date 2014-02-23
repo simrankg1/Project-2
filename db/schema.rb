@@ -11,55 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223043636) do
+ActiveRecord::Schema.define(version: 20140223191727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "contacts", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.integer  "phone"
-    t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "invites", force: true do |t|
-    t.integer  "time"
+    t.time     "time"
+    t.date     "date"
     t.string   "address"
     t.float    "lat"
-    t.float    "lgn"
-    t.integer  "user_id"
+    t.float    "lng"
+    t.integer  "ownerid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "invites", ["user_id"], name: "index_invites_on_user_id", using: :btree
 
   create_table "meets", force: true do |t|
-    t.string   "comment"
-    t.integer  "time"
+    t.text     "comment"
+    t.time     "time"
+    t.date     "date"
     t.string   "address"
     t.float    "lat"
-    t.float    "lgn"
-    t.integer  "user_id"
+    t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "meets", ["user_id"], name: "index_meets_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "password"
     t.string   "password_confirmation"
     t.string   "name"
-    t.integer  "phone"
+    t.string   "phone"
+    t.text     "bio"
+    t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
   end
 
 end
