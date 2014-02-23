@@ -1,0 +1,18 @@
+<h1> All Your Invites </h1>
+
+<ul class="nav nav-pills">
+  <li>
+    <%= link_to('New Invite', new_invite_path) %>
+  </li>
+</ul>
+
+<% @invites.each do |invite| %>
+  <div class="row">
+     <div class="col-md-3 col-sm-3">
+      <p class="lead"><%= link_to(invite.user_id, invite) %></p>
+      <p class="text-info"><%= invite.address %></p>
+      <p class="text-warning"><%= invite.time %></p>
+    </div>
+  
+<% end %>
+
