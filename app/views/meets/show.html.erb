@@ -1,0 +1,16 @@
+
+<h1>Your Meet-Up</h1>
+
+<ul class="nav nav-pills">
+  <li><%= link_to('New Meet-Up', new_meet_path) %></li>
+  <li><%= link_to('Delete Meet-Up', @meet, :method => :delete, :confirm => 'Are you sure?') %></li>
+  <li><%= link_to('Edit Meet-Up', edit_meet_path(@meet)) %></li>
+</ul>
+
+<div class="row">
+     <div class="col-md-3">
+      <p class="lead"><%= link_to(@meet.user_id, @meet) %></p>
+      <p class="text-info"><%= @meet.address %></p>
+      <p class="text-info"><%= @meet.time %></p>
+    </div>
+</div>

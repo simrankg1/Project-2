@@ -1,0 +1,28 @@
+<h1>Edit Invite</h1>
+
+<%= form_for @invite do |f| %>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <br>
+  <%= f.label :time %>
+  <%= f.text_field :time %>
+  <br>
+  <%= f.label :user_id %>
+  <%= f.text_field :user_id %>
+  <br>
+  <br>
+  <div class="input-group">
+    <% Invite.order(:name).each do |invite| %>
+       <span class="input-group-addon">
+        <%= invite.name %>
+        
+        </span>
+    <% end %>
+  </div>
+  <p><p>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
+
+
+
+

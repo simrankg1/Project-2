@@ -1,0 +1,16 @@
+
+<h1>Your Invite</h1>
+
+<ul class="nav nav-pills">
+  <li><%= link_to('New Invite', new_invite_path) %></li>
+  <li><%= link_to('Delete Invite', @invite, :method => :delete, :confirm => 'Are you sure?') %></li>
+  <li><%= link_to('Edit Invite', edit_invite_path(@invite)) %></li>
+</ul>
+
+<div class="row">
+     <div class="col-md-3">
+      <p class="lead"><%= link_to(@invite.user_id, @invite) %></p>
+      <p class="text-info"><%= @invite.address %></p>
+      <p class="text-info"><%= @invite.time %></p>
+    </div>
+</div>
