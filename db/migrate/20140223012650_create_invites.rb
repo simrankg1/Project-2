@@ -1,11 +1,12 @@
-ok class CreateInvites < ActiveRecord::Migration
+class CreateInvites < ActiveRecord::Migration
   def change
     create_table :invites do |t|
-      t.integer :time
+      t.date :date
+      t.time :time
       t.string :address
       t.float :lat
-      t.float :lgn
-      t.belongs_to :user, index: true
+      t.float :lng
+      t.integer :owner
 
       t.timestamps
     end
