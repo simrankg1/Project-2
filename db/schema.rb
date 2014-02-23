@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 20140223191727) do
   enable_extension "plpgsql"
 
   create_table "contacts", force: true do |t|
+    t.integer  "user_a_id",  null: false
+    t.integer  "user_b_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -28,9 +30,12 @@ ActiveRecord::Schema.define(version: 20140223191727) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "ownerid"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "invites", ["user_id"], name: "index_invites_on_user_id", using: :btree
 
   create_table "meets", force: true do |t|
     t.text     "comment"
@@ -39,9 +44,12 @@ ActiveRecord::Schema.define(version: 20140223191727) do
     t.string   "address"
     t.float    "lat"
     t.float    "lng"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "meets", ["user_id"], name: "index_meets_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
