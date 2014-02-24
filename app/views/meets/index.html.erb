@@ -1,21 +1,65 @@
+
+
+
+
+<h1 id="app_name">PowWow</h1>
+
+
+<div id="contacts" class="hidden">
+	<h1>contacts </h1>
+	<ul>
+		<% @contacts.each do |contact| %>
+			<div> 
+				<a href="#">
+					<p> <%=contact.name %> </p>
+					<p> <%=contact.email %></p>
+				</a>
+			</div>
+		<%end%> 
+	</ul>
+</div>
+
+
+<div class="hidden" id="invites">
+	<a id="inc" href="#">incoming</a>
+	<a id="out" href="#">outgoing</a>
+	<div id="incoming">
+	<%@incoming.each do |msg| %>
+	<li> <%=msg.address%></li>
+	<li> <%=msg.time%></li>
+	<%end%>
+	</div>
+	<div class="hidden" id="outgoing">
+	<%@outgoing.each do |msg| %>
+	<li> <%msg.address %></li>
+	<li> <%msg.time %></li>
+	<%end%>
+	</div>
+</div>
+
+<div class="meets">
+<%=link_to "New Meet", new_invite_path %>
 <h1> Your Scheduled Meet-Ups </h1>
 
-<ul class="nav nav-pills">
-  <li>
-    <%= link_to('New Meet', new_meet_path) %>
-  </li>
-</ul>
-
 <% @meets.each do |meet| %>
-  <div class="row">
-     <div class="col-md-3 col-sm-3">
-      <p class="lead"><%= link_to(meet.user_id, meet) %></p>
-      <p class="text-info"><%= meet.address %></p>
-      <p class="text-warning"><%= meet.time %></p>
+     <div>
+	     <a href="#">
+		      <p ><%= meet.address %></p>
+		      <p ><%= meet.time %></p>
+		      <p ><%= meet.users.first %></p>
+	      </a>
     </div>
-  
 <% end %>
-
-
+</div>
+<br>
 
 <%=link_to "Sign out", destroy_user_session_path, method: "delete" %>
+
+
+<div>
+<ul class="nav">
+<li><a id="ibtn" href="#">Invites</a></li>
+<li><a id="ebtn" href="#">Events</a></li>
+<li><a id="cbtn" href="#">Contacts</a></li>
+</ul>
+</div>
