@@ -1,11 +1,11 @@
 class MeetsController < ApplicationController
 before_filter :authenticate_user!
   def index
-    user = current_user
-    @meets= user.meets
-    @contacts = user.users
-    @outgoing = user.invites
-    @incoming = Invite.all.where(user_id: user.id )
+    @user = current_user
+    @meets= @user.meets
+    @contacts = @user.users
+    @outgoing = @user.invites
+    @incoming = Invite.all.where(user_id: @user.id)
   end
 
   def new

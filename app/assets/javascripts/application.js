@@ -20,19 +20,29 @@ $(document).ready(function(){
 		e.preventDefault();
 		$(".meets").hide();
 		$("#invites").hide();
+		$("#profile").hide();
 		$("#contacts").show();
 	});
 	$("#ebtn").on('click',function(e){
 		e.preventDefault();
 		$("#contacts").hide();
 		$("#invites").hide();
+		$("#profile").hide();
 		$(".meets").show();
 	});
 	$("#ibtn").on('click',function(e){
 		e.preventDefault();
 		$("#contacts").hide();
 		$(".meets").hide();
+		$("#profile").hide();
 		$("#invites").show();
+	});
+	$("#pbtn").on("click", function(e){
+		e.preventDefault();
+		$("#contacts").hide();
+		$("#invites").hide();
+		$(".meets").hide();
+		$("#profile").show();
 	});
 	$("#inc").on('click',function(e){
 		e.preventDefault();
@@ -44,5 +54,6 @@ $(document).ready(function(){
 		$("#incoming").hide();
 		$("outgoing").show();
 	});
+
 
 });
