@@ -1,16 +1,48 @@
-
-<h1>Your Meet-Up</h1>
+<h1>Meet</h1>
 
 <ul class="nav nav-pills">
-  <li><%= link_to('New Meet-Up', new_meet_path) %></li>
-  <li><%= link_to('Delete Meet-Up', @meet, :method => :delete, :confirm => 'Are you sure?') %></li>
-  <li><%= link_to('Edit Meet-Up', edit_meet_path(@meet)) %></li>
+  <li><%= link_to 'Cancel', "#" %></li>
 </ul>
 
 <div class="row">
-     <div class="col-md-3">
-      <p class="lead"><%= link_to(@meet.user_id, @meet) %></p>
-      <p class="text-info"><%= @meet.address %></p>
-      <p class="text-info"><%= @meet.time %></p>
-    </div>
+  <div class="col-md-3">
+    <p class="lead"><%= @meet.time.strftime("%l:%M %p") %></p>
+    <p class="text-info"><%= @meet.date.strftime("%a, %b %e") %></p>
+  </div>
 </div>
+
+<p><%= @meet.address %></p>
+
+<div id="map-canvas"/></div>
+
+<div class="row">
+  <div class="col-md-3">
+    <h2>Who's coming</h2>
+    <% @meet.users.each do |u| %>
+      <p><%= u.name %></p>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+function initialize_map() {
+
+  var latlng = new google.maps.LatLng(<%= @meet.lat %>, <%= @meet.lng %>);
+  var mapOptions = {
+    zoom: 16,
+    center: latlng,
+    mapTypeControl: false
+  }
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  var marker = new google.maps.Marker({
+    map: map,
+    position: latlng
+  });
+
+};
+
+$(document).on('ready page:load', initialize_map);
+
+</script>
