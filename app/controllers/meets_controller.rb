@@ -6,6 +6,7 @@ before_filter :authenticate_user!
     @contacts = @user.users
     @outgoing = @user.invites
     @incoming = Invite.all.where(user_id: @user.id)
+    
   end
 
   def new
