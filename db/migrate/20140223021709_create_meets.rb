@@ -7,6 +7,7 @@ class CreateMeets < ActiveRecord::Migration
       t.string :address
       t.float :lat
       t.float :lng
+      t.belongs_to :user, index: true
 
       t.timestamps
     end
