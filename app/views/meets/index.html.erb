@@ -59,6 +59,11 @@
 <label>Your Name: </label><%= @user.name %><br>
 <label>Your Email: </label><%= @user.email %><br>
 <label>Your Phone: </label><%= @user.phone %><br>
+<label>About You: </label><br>
+<input type="text_field" placeholder="tell us about you!"><br>
+<submit >
+
+
 <%=link_to "Sign out", destroy_user_session_path, method: "delete" %>
 </div>
 
