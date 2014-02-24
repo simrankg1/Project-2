@@ -8,9 +8,18 @@
 </ul>
 
 <div class="row">
-     <div class="col-md-3">
-      <p class="lead"><%= @invite.time %></p>
-      <p class="text-info"><%= @invite.date %></p>
-      <p class="text-info"><%= @invite.address %></p>
-    </div>
+  <div class="col-md-3">
+    <p class="lead"><%= @invite.time.strftime("%l:%M %p") %></p>
+    <p class="text-info"><%= @invite.date.strftime("%a, %b %e") %></p>
+    <p class="text-info"><%= @invite.address %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <h2>Who's invited</h2>
+    <% @invite.users.each do |u| %>
+      <p><%= u.name %></p>
+    <% end %>
+  </div>
 </div>
