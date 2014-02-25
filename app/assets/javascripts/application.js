@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require handlebars.runtime
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
@@ -20,21 +21,42 @@ $(document).ready(function(){
 		e.preventDefault();
 		$(".meets").hide();
 		$("#invites").hide();
+		$("#profile").hide();
 		$("#contacts").show();
+		$("#contact").html("");
+      $.get("/getcontacts.json").done(function(data){
+          $(data).each(function(index, contact){
+            var contactHTML = HandlebarsTemplates.contacts(contact);
+              $("#contact").append(contactHTML);
+          });
+        });
 	});
+  $(".ind").on('click', function(e){
+    $(".ind div").css("background-color","blue");
+  });
+
 	$("#ebtn").on('click',function(e){
 		e.preventDefault();
 		$("#contacts").hide();
 		$("#invites").hide();
+		$("#profile").hide();
 		$(".meets").show();
 	});
 	$("#ibtn").on('click',function(e){
 		e.preventDefault();
 		$("#contacts").hide();
 		$(".meets").hide();
+		$("#profile").hide();
 		$("#invites").show();
 		$("#outgoing").show();
 		$("#incoming").hide();
+	});
+	$("#pbtn").on("click", function(e){
+		e.preventDefault();
+		$("#contacts").hide();
+		$("#invites").hide();
+		$(".meets").hide();
+		$("#profile").show();
 	});
 	$("#inc").on('click',function(e){
 		e.preventDefault();
@@ -46,5 +68,8 @@ $(document).ready(function(){
 		$("#incoming").hide();
 		$("#outgoing").show();
 	});
+
+
+	
 
 });
