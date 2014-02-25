@@ -6,20 +6,20 @@
 
 
 <div id="contacts" class="hidden">
-	<h1>contacts </h1>
 
+<h1>contacts </h1> 
 	<button><a href="/newcontact">Add contact</a></button>
-	<ul>
-		<% @contacts.each do |contact| %>
-			<div> 
-				<a href="#">
-					<p> <%=contact.name %> </p>
-					<p> <%=contact.email %></p>
-				</a>
-			</div>
-		<%end%> 
-	</ul>
+
+<div id="contact">
 </div>
+	
+</div>
+
+
+
+
+
+
 
 <div class="hidden" id="invites">
 	<a id="inc" href="#">incoming</a>
@@ -63,11 +63,24 @@
 </div>
 <br>
 
+<div id="profile" class="hidden">
+<h1>Your PowWow Account</h1>
+<label>Username: </label><%= @user.username %><br>
+<label>Your Name: </label><%= @user.name %><br>
+<label>Your Email: </label><%= @user.email %><br>
+<label>Your Phone: </label><%= @user.phone %><br>
+<label>About You: </label><br>
+<input type="text_field" placeholder="tell us about you!"><br>
+<submit >
+
+
 <%=link_to "Sign out", destroy_user_session_path, method: "delete" %>
+</div>
 
 
 <div>
 <ul class="nav">
+<li><a id="pbtn" href="#">Profile</a></li>
 <li><a id="ibtn" href="#">Invites</a></li>
 <li><a id="ebtn" href="#">Events</a></li>
 <li><a id="cbtn" href="#">Contacts</a></li>
