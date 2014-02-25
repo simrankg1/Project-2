@@ -6,7 +6,9 @@
 
 
 <div id="contacts" class="hidden">
-<h1>contacts </h1> <button><a href="/addcontact">Add contact</a></button>
+
+<h1>contacts </h1> 
+	<button><a href="/newcontact">Add contact</a></button>
 
 <div id="contact">
 </div>
@@ -17,20 +19,28 @@
 
 
 
+
+
 <div class="hidden" id="invites">
 	<a id="inc" href="#">incoming</a>
 	<a id="out" href="#">outgoing</a>
 	<div id="incoming">
-	<%@incoming.each do |msg| %>
-	<li> <%=msg.address%></li>
-	<li> <%=msg.time%></li>
-	<%end%>
+		<ul>
+			<% @incoming.each do |msg| %>
+				<li> <%= msg.address%></li>
+				<li> <%= msg.time.strftime("%l:%M %p") %></li>
+				<li> <%= msg.date.strftime("%a, %b %e") %></li>
+			<%end%>
+		</ul>
 	</div>
 	<div class="hidden" id="outgoing">
-	<%@outgoing.each do |msg| %>
-	<li> <%msg.address %></li>
-	<li> <%msg.time %></li>
-	<%end%>
+		<ul>
+			<% @outgoing.each do |msg| %>
+				<li> <%= msg.address %></li>
+				<li> <%= msg.time.strftime("%l:%M %p") %></li>
+				<li> <%= msg.date.strftime("%a, %b %e") %></li>
+			<%end%>
+		</ul>
 	</div>
 </div>
 
@@ -42,7 +52,7 @@
      <div>
 	     <a href="#">
 		      <p ><%= meet.address %></p>
-		      <p ><%= meet.time %></p>
+		      <p ><%= meet.time.strftime("%l:%M %p") %></p>
 		      <p ><%= meet.users.first %></p>
 	      </a>
     </div>
