@@ -78,8 +78,5 @@ w.meets << f
 
 i.users << w
 h.users << w
-<<<<<<< HEAD
 f.users << w
-=======
 f.users << w
->>>>>>> upstream/master
