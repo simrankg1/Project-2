@@ -85,7 +85,7 @@ a:link {
 	top:0;
 	width:100%;
 	/*background-color:#fff*/;
-	}
+	}	
 
 .hidden{
 	display:none;
@@ -110,6 +110,14 @@ a:link {
 	text-align: center;
 }
 
+#profile {
+	position:fixed;
+	top:90px;
+	height:70%;
+	overflow-y:auto;
+	width:80%;
+	text-align: center;
+
 button {
   background-color: Red;
   border: none;
@@ -118,3 +126,4 @@ button {
 ul {
   list-style: none;
 }
+
