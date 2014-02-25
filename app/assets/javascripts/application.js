@@ -23,10 +23,11 @@ $(document).ready(function(){
 		$("#invites").hide();
 		$("#profile").hide();
 		$("#contacts").show();
+		$("#contact").html("");
 		$.get("/getcontacts.json").done(function(data){
         $(data).each(function(index, contact){
           var contactHTML = HandlebarsTemplates.contacts(contact);
-            $("#contacts").append(contactHTML);
+            $("#contact").append(contactHTML);
         });
       });
 	});
