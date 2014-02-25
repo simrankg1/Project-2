@@ -34,6 +34,7 @@ $(document).ready(function(){
 		$(".meets").hide();
 		$("#invites").show();
 		$("#outgoing").show();
+		$("#incoming").hide();
 	});
 	$("#inc").on('click',function(e){
 		e.preventDefault();
