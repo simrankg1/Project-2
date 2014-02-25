@@ -8,6 +8,10 @@ Project2::Application.routes.draw do
   post "/select_contacts/" => 'invites#select_contacts', as: :select_contacts
   get "/contacts" => 'invites#contacts' 
 
+  get '/newcontact', to: 'contacts#new'
+  post '/addcontact', to: 'contacts#add', as: :add_contact
+  get '/updatecontact/:id', to: 'contacts#update'
+
 
  
 
