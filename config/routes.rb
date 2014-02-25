@@ -12,6 +12,8 @@ Project2::Application.routes.draw do
   post '/addcontact', to: 'contacts#add', as: :add_contact
   get '/updatecontact/:id', to: 'contacts#update'
 
+  get 'invites/:id/confirm', to: 'invites#confirm'
+
 
  
 

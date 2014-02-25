@@ -1,7 +1,7 @@
 class InvitesController < ApplicationController
 before_filter :authenticate_user!
 
-def index
+  def index
     @invites = Invite.all
   end
 
@@ -18,8 +18,32 @@ def index
         user = User.find_by_id(x)
         new_invite.users << user
         user.invites << new_invite
-     end
+    end
 
+    new_invite.users << current_user
+    current_user.invites << new_invite
+    redirect_to :root
+  end
+
+  def confirm
+    id = params[:id]
+    invite = Invite.find_by_id(id)
+
+    parameters = {}
+    parameters["time"] = invite.time
+    parameters["date"] = invite.date
+    parameters["address"] = invite.address
+    parameters["lat"] = invite.lat
+    parameters["lng"] = invite.lng
+
+    users = invite.users
+
+    new_meet = Meet.create(parameters)
+    new_meet.users << users
+    
+    invite.destroy
+
+    flash[:alert] = "Confirmed!"
     redirect_to :root
   end
 
