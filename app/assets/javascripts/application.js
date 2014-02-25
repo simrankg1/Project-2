@@ -33,6 +33,7 @@ $(document).ready(function(){
 		$("#contacts").hide();
 		$(".meets").hide();
 		$("#invites").show();
+		$("#outgoing").show();
 	});
 	$("#inc").on('click',function(e){
 		e.preventDefault();
@@ -42,7 +43,7 @@ $(document).ready(function(){
 	$("#out").on('click',function(e){
 		e.preventDefault();
 		$("#incoming").hide();
-		$("outgoing").show();
+		$("#outgoing").show();
 	});
 
 });
