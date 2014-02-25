@@ -12,7 +12,6 @@ before_filter :authenticate_user!
   def contacts
     @user = current_user
     @contacts = @user.users
-
     respond_to do |f| 
       f.json {render :json => @contacts.to_json}
     end

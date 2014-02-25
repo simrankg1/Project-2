@@ -24,13 +24,17 @@ $(document).ready(function(){
 		$("#profile").hide();
 		$("#contacts").show();
 		$("#contact").html("");
-		$.get("/getcontacts.json").done(function(data){
-        $(data).each(function(index, contact){
-          var contactHTML = HandlebarsTemplates.contacts(contact);
-            $("#contact").append(contactHTML);
+      $.get("/getcontacts.json").done(function(data){
+          $(data).each(function(index, contact){
+            var contactHTML = HandlebarsTemplates.contacts(contact);
+              $("#contact").append(contactHTML);
+          });
         });
-      });
 	});
+  $(".ind").on('click', function(e){
+    $(".ind div").css("background-color","blue");
+  });
+
 	$("#ebtn").on('click',function(e){
 		e.preventDefault();
 		$("#contacts").hide();
