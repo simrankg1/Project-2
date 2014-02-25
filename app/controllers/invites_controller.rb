@@ -28,9 +28,14 @@ def index
   end
 
   def select_contacts
-    @invite_contact=params[:contacts]["add"] 
-    @invite=Invite.new
-    render :new 
+    if params[:contacts].nil?
+      flash[:alert] = "Please select a contact to invite!"
+      redirect_to :root
+    else
+      @invite_contact=params[:contacts]["add"] 
+      @invite=Invite.new
+      render :new 
+    end
   end
 
   def show
