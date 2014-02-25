@@ -58,6 +58,13 @@ $(document).ready(function(){
 		$(".meets").hide();
 		$("#profile").show();
 	});
+	$("#pbtn").on("click", function(e){
+		e.preventDefault();
+		$("#contacts").hide();
+		$("#invites").hide();
+		$(".meets").hide();
+		$("#profile").show();
+	});
 	$("#inc").on('click',function(e){
 		e.preventDefault();
 		$("#outgoing").hide();
