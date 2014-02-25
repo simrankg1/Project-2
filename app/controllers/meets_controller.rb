@@ -1,12 +1,20 @@
 class MeetsController < ApplicationController
 before_filter :authenticate_user!
+ 
   def index
-    user = current_user
-    @meets= user.meets
-    @contacts = user.users
-    @outgoing = Invite.where(ownerid: user.id)
-    @incoming = user.invites.where('ownerid != ?', user.id)
+    @user = current_user
+    @meets= @user.meets
+    @contacts = @user.users
+    @outgoing = Invite.where(ownerid: @user.id)
+    @incoming = @user.invites.where('ownerid != ?', @user.id)
   end
+
+  def contacts
+    @user = current_user
+    @contacts = @user.users
+    respond_to do |f| 
+      f.json {render :json => @contacts.to_json}
+    end
 
   def new
     @meet= Meet.new
