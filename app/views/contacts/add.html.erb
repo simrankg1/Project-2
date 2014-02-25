@@ -1,0 +1,9 @@
+<% if @user.nil? %>
+
+  <p>No user found. <a href="/new">Return to search</a></p>
+
+<% else %>
+
+  <%= @user.name %> <a href="/updatecontact/<%= @user.id %>"><button>Add</button></a>
+
+<% end %>
