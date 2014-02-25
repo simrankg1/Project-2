@@ -14,7 +14,7 @@
   <div class="input-group">
     <% Invite.order(:name).each do |invite| %>
        <span class="input-group-addon">
-        <%= invite.name %>
+        <%= invite.user_id %>
         
         </span>
     <% end %>

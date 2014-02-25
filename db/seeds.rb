@@ -79,3 +79,4 @@ w.meets << f
 i.users << w
 h.users << w
 f.users << w
+f.users << w
