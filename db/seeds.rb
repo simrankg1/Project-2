@@ -7,10 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.create(name: "Bob", phone: "4150000000", email: "bob@gmail.com", password:"lololo", password_confirmation:"lololo", username:"bigbob")
-
-
-
 u = User.create(name: 'Bob', email: 'bob@aol.com', password: 'foobar123', password_confirmation: 'foobar123', phone: 1234567894, username: 'bobisno1')
 v = User.create(name: 'David', email: 'davidc@gmail.com', password: 'seahawks1', password_confirmation: 'seahawks1', phone: 1045678912, username: 'futbolover')
 w = User.create(name: 'Sarah', email: 'saraht@yahoo.com', password: 'seattle88', password_confirmation: 'seattle88', phone: 1456789123, username: 'saraht98')
@@ -82,4 +78,8 @@ w.meets << f
 
 i.users << w
 h.users << w
+<<<<<<< HEAD
 f.users << w
+=======
+f.users << w
+>>>>>>> upstream/master
