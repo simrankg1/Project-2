@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
@@ -18,7 +17,6 @@
 //= require_tree ./templates
 //= require_tree .
 $(function (){
-
 	$("#cbtn").on('click',function(e){
 		e.preventDefault();
 		$(".meets").hide();
@@ -33,7 +31,6 @@ $(function (){
           });
       });
 	});
-
   $("#contact div .ind").click(function(e){
     e.preventDefault();
     $(".ind").css("color","yellow");
@@ -53,6 +50,14 @@ $(function (){
 		$("#profile").hide();
 		$("#invites").show();
 		$("#outgoing").show();
+		$("#incoming").hide();
+	});
+	$("#pbtn").on("click", function(e){
+		e.preventDefault();
+		$("#contacts").hide();
+		$("#invites").hide();
+		$(".meets").hide();
+		$("#profile").show();
 	});
 	$("#pbtn").on("click", function(e){
 		e.preventDefault();
