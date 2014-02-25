@@ -10,7 +10,8 @@ def index
   end
 
   def create
-    parameters = params.require(:invite).permit(:time, :address, :lat, :lgn, :user_id, :created_at, :updated_at)
+    parameters = params.require(:invite).permit(:date, :time, :address)
+    parameters["ownerid"] = current_user.id
     new_invite = Invite.create(parameters)
      
     params[:users].each do |x|

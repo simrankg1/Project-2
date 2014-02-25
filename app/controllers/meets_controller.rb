@@ -4,8 +4,8 @@ before_filter :authenticate_user!
     user = current_user
     @meets= user.meets
     @contacts = user.users
-    @outgoing = user.invites
-    @incoming = Invite.all.where(user_id: user.id )
+    @outgoing = Invite.where(ownerid: user.id)
+    @incoming = user.invites.where('ownerid != ?', user.id)
   end
 
   def new
