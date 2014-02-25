@@ -6,7 +6,16 @@ before_filter :authenticate_user!
     @contacts = @user.users
     @outgoing = @user.invites
     @incoming = Invite.all.where(user_id: @user.id)
-    
+
+  end
+
+  def contacts
+    @user = current_user
+    @contacts = @user.users
+
+    respond_to do |f| 
+      f.json {render :json => @contacts.to_json}
+    end
   end
 
   def new
