@@ -13,4 +13,6 @@ class User < ActiveRecord::Base
 	has_many(:reverse_contacts, :class_name => :Contact, :foreign_key => :user_b_id, :dependent => :destroy)
 	has_many :users, through: :contacts, :source => :user_b
 
+  validates :username, :presence => true, :uniqueness => { :message => "Username is already taken." }
+
 end
