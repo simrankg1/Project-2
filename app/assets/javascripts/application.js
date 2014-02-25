@@ -48,6 +48,7 @@ $(document).ready(function(){
 		$(".meets").hide();
 		$("#profile").hide();
 		$("#invites").show();
+		$("#outgoing").show();
 	});
 	$("#pbtn").on("click", function(e){
 		e.preventDefault();
@@ -64,7 +65,7 @@ $(document).ready(function(){
 	$("#out").on('click',function(e){
 		e.preventDefault();
 		$("#incoming").hide();
-		$("outgoing").show();
+		$("#outgoing").show();
 	});
 
 
