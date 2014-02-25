@@ -10,10 +10,27 @@ def index
   end
 
   def create
-    new_invite = params.require(:invite).permit(:time, :address, :lat, :lgn, :user_id, :created_at, :updated_at)
-    # new_invite[:user_id] = current_user.id
-    @invite = Invite.create(new_invite)
-    render :show
+    parameters = params.require(:invite).permit(:time, :address, :lat, :lgn, :user_id, :created_at, :updated_at)
+    new_invite = Invite.create(parameters)
+     
+    params[:users].each do |x|
+        user = User.find_by_id(x)
+        new_invite.users << user
+        user.invites << new_invite
+     end
+
+    redirect_to :root
+  end
+
+  def contacts
+    @invite= Invite.new
+     
+  end
+
+  def select_contacts
+    @invite_contact=params[:contacts]["add"] 
+    @invite=Invite.new
+    render :new 
   end
 
   def show
