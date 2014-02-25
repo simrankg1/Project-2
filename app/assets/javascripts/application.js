@@ -55,5 +55,11 @@ $(document).ready(function(){
 		$("outgoing").show();
 	});
 
+	$.get("/todos.json").done(function(data){
+        $(data).each(function(index, some_Todo){
+          var todoHTML = HandlebarsTemplates.todo(some_Todo);
+            $("#todos").append(todoHTML);
+        });
+      });
 
 });
