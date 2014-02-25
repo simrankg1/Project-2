@@ -10,12 +10,14 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require handlebars.runtime
+
+//= require turbolinks
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require handlebars.runtime
+//= require_tree ./templates
 //= require_tree .
-$(document).ready(function(){
+$(function (){
 
 	$("#cbtn").on('click',function(e){
 		e.preventDefault();
@@ -29,10 +31,12 @@ $(document).ready(function(){
             var contactHTML = HandlebarsTemplates.contacts(contact);
               $("#contact").append(contactHTML);
           });
-        });
+      });
 	});
-  $(".ind").on('click', function(e){
-    $(".ind div").css("background-color","blue");
+
+  $("#contact div .ind").click(function(e){
+    e.preventDefault();
+    $(".ind").css("color","yellow");
   });
 
 	$("#ebtn").on('click',function(e){
@@ -67,8 +71,5 @@ $(document).ready(function(){
 		$("#incoming").hide();
 		$("#outgoing").show();
 	});
-
-
-	
 
 });

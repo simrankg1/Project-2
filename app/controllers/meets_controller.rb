@@ -15,6 +15,7 @@ before_filter :authenticate_user!
     respond_to do |f| 
       f.json {render :json => @contacts.to_json}
     end
+  end
 
   def new
     @meet= Meet.new

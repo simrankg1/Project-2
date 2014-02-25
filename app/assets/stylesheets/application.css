@@ -17,24 +17,23 @@
 html, body{
   	height:90%;
   	font-family: 'Open Sans', sans-serif;
-  	background-color: #4E3229;
-  	color:red;
+  	
   }
   /** {
   	border:2px solid black;
   }*/
 
 a {
-	color:#fff;
+	/*color:#fff;*/
 } 
 a:link {
-	color:#fff;
+	/*color:#fff;*/
 }
 
  #app_name{
  	text-align: center;
  	margin-top:0;
- 	color:#fff;
+ 	/*color:#fff;*/
 	position:absolute;
 	left:0;
 	top:0;
@@ -58,7 +57,7 @@ a:link {
     display:inline;
     padding:15px 15px 5px 15px;
     background-color:red;
-    color:#fff;
+    /*color:#fff;*/
     text-decoration: none;
     opacity:.6;
 }
@@ -127,3 +126,7 @@ ul {
   list-style: none;
 }
 
+.ind {
+	height:100px;
+	width: 250px;
+}
