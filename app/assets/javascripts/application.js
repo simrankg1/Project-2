@@ -16,7 +16,9 @@
 //= require handlebars.runtime
 //= require_tree ./templates
 //= require_tree .
-$(function (){
+
+$(document).ready(function(){
+
 	$("#cbtn").on('click',function(e){
 		e.preventDefault();
 		$(".meets").hide();
