@@ -7,7 +7,6 @@ class CreateInvites < ActiveRecord::Migration
       t.float :lat
       t.float :lng
       t.integer :ownerid
-      t.belongs_to :user, index: true
 
       t.timestamps
     end

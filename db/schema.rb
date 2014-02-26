@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223215115) do
+ActiveRecord::Schema.define(version: 20140226053845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20140223215115) do
     t.datetime "updated_at"
   end
 
+  create_table "invite_owners", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "invite_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invite_owners", ["invite_id"], name: "index_invite_owners_on_invite_id", using: :btree
+  add_index "invite_owners", ["user_id"], name: "index_invite_owners_on_user_id", using: :btree
+
   create_table "invites", force: true do |t|
     t.time     "time"
     t.date     "date"
@@ -30,12 +40,19 @@ ActiveRecord::Schema.define(version: 20140223215115) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "ownerid"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "invites", ["user_id"], name: "index_invites_on_user_id", using: :btree
+  create_table "meet_owners", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "meet_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "meet_owners", ["meet_id"], name: "index_meet_owners_on_meet_id", using: :btree
+  add_index "meet_owners", ["user_id"], name: "index_meet_owners_on_user_id", using: :btree
 
   create_table "meets", force: true do |t|
     t.text     "comment"
@@ -44,12 +61,9 @@ ActiveRecord::Schema.define(version: 20140223215115) do
     t.string   "address"
     t.float    "lat"
     t.float    "lng"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "meets", ["user_id"], name: "index_meets_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
