@@ -33,7 +33,7 @@ $(document).ready(function(){
           });
       });
 	});
-  $("#contact div .ind").click(function(e){
+  $("#contact").click(function(e){
     e.preventDefault();
     $(".ind").css("color","yellow");
   });

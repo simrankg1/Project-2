@@ -12,7 +12,7 @@ Project2::Application.routes.draw do
   get '/newcontact', to: 'contacts#new'
   post '/addcontact', to: 'contacts#add', as: :add_contact
   get '/updatecontact/:id', to: 'contacts#update'
-
+  get '/contact/:id', to: 'contacts#show'
   get 'invites/:id/confirm', to: 'invites#confirm'
 
 
