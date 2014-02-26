@@ -13,15 +13,18 @@ before_filter :authenticate_user!
     parameters = params.require(:invite).permit(:date, :time, :address)
     parameters["ownerid"] = current_user.id
     new_invite = Invite.create(parameters)
-     
+    
+    new_invite.users << current_user
+
+    binding.pry
+
     params[:users].each do |x|
         user = User.find_by_id(x)
         new_invite.users << user
-        user.invites << new_invite
     end
 
-    new_invite.users << current_user
-    current_user.invites << new_invite
+    binding.pry
+
     redirect_to :root
   end
 
