@@ -21,6 +21,8 @@ before_filter :authenticate_user!
         new_invite.users << user
     end
 
+    send_text_message
+
     redirect_to :root
   end
 
@@ -81,6 +83,31 @@ before_filter :authenticate_user!
 
     invite.delete
     redirect_to(invites_path)
+  end
+
+  private
+
+  def send_text_message
+
+    #@user = current_user
+
+    id = params[:users].first
+    user = User.find_by_id(id)
+    
+    @contact = user
+
+    number_to_send_to = "+1#{@contact.phone}"
+
+    account_sid = ENV['ACCOUNT_SID']
+    auth_token = ENV['AUTH_TOKEN']
+    twilio_phone_number = ENV['TWILIO_PHONE']
+
+    @twilio_client = Twilio::REST::Client.new account_sid, auth_token
+
+    @twilio_client.account.sms.messages.create(
+      :from => ENV['TWILIO_PHONE'],
+      :to => number_to_send_to,
+      :body => "#{current_user.name} sent you an invite!")
   end
 
 end
