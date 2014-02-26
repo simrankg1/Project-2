@@ -2,6 +2,13 @@ class MeetsController < ApplicationController
 before_filter :authenticate_user!
  
   def index
+    @user=current_user
+    @meets= @user.meets
+    @out_invites = Invite.where(ownerid: @user.id)
+    @inc_invites = @user.invites.where('ownerid != ?', @user.id)
+  end
+
+  def contacts
     @user = current_user
     @confirmed_contacts=[]
     @out_pending_contacts= []
@@ -16,23 +23,17 @@ before_filter :authenticate_user!
         end
       end
     end
-
     User.all.each do |user|
       if  user.users.include?(@user) && !@confirmed_contacts.include?(user)
           @inc_pending_contacts << user
       end
     end
-
-    @meets= @user.meets
-    @out_invites = Invite.where(ownerid: @user.id)
-    @inc_invites = @user.invites.where('ownerid != ?', @user.id)
-  end
-
-  def contacts
-    @user = current_user
-    @contacts = @user.users
     respond_to do |f| 
-      f.json {render :json => @contacts.to_json}
+      f.json {render :json => 
+        {:confirmed_contacts =>@confirmed_contacts,
+         :out_pending_contacts => @out_pending_contacts,
+         :inc_pending_contacts => @inc_pending_contacts
+          }}
     end
   end
 
