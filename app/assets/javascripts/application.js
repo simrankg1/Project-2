@@ -17,8 +17,8 @@
 //= require_tree ./templates
 //= require_tree .
 
-$(document).ready(function(){
-
+$(document).on('ready page:load', function(){
+	
 	$("#cbtn").on('click',function(e){
 		e.preventDefault();
 		$(".meets").hide();
