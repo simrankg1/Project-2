@@ -20,7 +20,7 @@ class ContactsController < ActionController::Base
     id = params[:id]
     user = User.find_by_id(id)
     current_user.users << user
-    user.users << current_user
+    # user.users << current_user
     flash[:alert] = "Successfully added #{user.name}!"
     redirect_to :root
   end
