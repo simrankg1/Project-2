@@ -18,7 +18,7 @@
 //= require_tree .
 
 $(document).on('ready page:load', function(){
-	
+
 	$("#cbtn").on('click',function(e){
 		e.preventDefault();
 		$(".meets").hide();
