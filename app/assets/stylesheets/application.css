@@ -57,8 +57,8 @@ a:link {
 .nav a{
     display:inline;
     padding:15px 15px 5px 15px;
-    background-color:red;
-    /*color:#fff;*/
+    background-color:black;
+    color:#fff;
     text-decoration: none;
     opacity:.6;
 }
