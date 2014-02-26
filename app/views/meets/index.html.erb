@@ -22,9 +22,11 @@
 	<h4>pending contact invitations: </h4>
 
 	<%unless @inc_pending_contacts.empty?%>
+	<h3>Pending Incoming</h3>
 		<%@inc_pending_contacts.each do |contact| %>
 			<div>
 				<%=contact.name %> <br><%=contact.email %>
+				<a href="/updatecontact/<%=contact.id%>"<button>confirm</button></a>
 			</div>
 		<%end%>
 	<%else%>
@@ -33,6 +35,7 @@
 
 
 	<%unless @out_pending_contacts.empty?%>
+	<h3>Pending Outgoing </h3>
 		<%@out_pending_contacts.each do |contact| %>
 			<div>
 				<%=contact.name %><br><%=contact.email %>
