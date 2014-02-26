@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-	has_many :invites
-	has_many :meets
-	belongs_to :meet
-	belongs_to :invite
+  has_many :invite_owners
+  has_many :meet_owners
+	has_many :invites, through: :invite_owners
+	has_many :meets, through: :meet_owners
 
 	has_many(:contacts, :foreign_key => :user_a_id, :dependent => :destroy)
 	has_many(:reverse_contacts, :class_name => :Contact, :foreign_key => :user_b_id, :dependent => :destroy)
