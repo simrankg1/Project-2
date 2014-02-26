@@ -10,10 +10,20 @@
 <h1>contacts </h1> 
 	<button><a href="/newcontact">Add contact</a></button>
 
-<div id="contact">
-</div>
-	
-</div>
+
+<%@confirmed_contacts.each do |contact| %>
+	<div><%=link_to "#{contact.name} #{contact.email}", "/contact/#{contact.id}" %> </div>
+<%end%>
+<br>
+<h4>pending contact invitations: </h4>
+<%@pending_contacts.each do |contact| %>
+	<div><%=contact.name %><%=contact.email %></div>
+<%end%>
+
+
+<!-- <div id="contact">
+</div> -->
+	</div>
 
 
 
