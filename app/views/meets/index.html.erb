@@ -7,23 +7,42 @@
 
 <div id="contacts" class="hidden">
 
-<h1>contacts </h1> 
+	<h1>contacts </h1> 
 	<button><a href="/newcontact">Add contact</a></button>
 
+	<%unless @confirmed_contacts.empty?%>
+		<%@confirmed_contacts.each do |contact| %>
+			<div>
+			<%=link_to "#{contact.name} #{contact.email}", "/contact/#{contact.id}" %> </div>
+		<%end%>
+	<%else%>
+		<h3>you have no confirmed contacts</h3>
+	<%end%>
+	<br>
+	<h4>pending contact invitations: </h4>
 
-<%@confirmed_contacts.each do |contact| %>
-	<div><%=link_to "#{contact.name} #{contact.email}", "/contact/#{contact.id}" %> </div>
-<%end%>
-<br>
-<h4>pending contact invitations: </h4>
-<%@pending_contacts.each do |contact| %>
-	<div><%=contact.name %><%=contact.email %></div>
-<%end%>
+	<%unless @inc_pending_contacts.empty?%>
+		<%@inc_pending_contacts.each do |contact| %>
+			<div>
+				<%=contact.name %> <br><%=contact.email %>
+			</div>
+		<%end%>
+	<%else%>
+		<h3>you have no pending incoming contacts</h3>
+	<%end%>
 
 
-<!-- <div id="contact">
-</div> -->
-	</div>
+	<%unless @out_pending_contacts.empty?%>
+		<%@out_pending_contacts.each do |contact| %>
+			<div>
+				<%=contact.name %><br><%=contact.email %>
+			</div>
+		<%end%>
+	<%else%>
+		<h3>you have no pending outgoing contacts</h3>
+	<%end%>
+
+</div>
 
 
 
@@ -36,7 +55,7 @@
 	<a id="out" href="#">outgoing</a>
 	<div id="incoming">
 		<ul>
-			<% @incoming.each do |inv| %>
+			<% @inc_invites.each do |inv| %>
 				<li> <%= inv.address %></li>
 				<li> <%= inv.time.strftime("%l:%M %p") %></li>
 				<li> <%= inv.date.strftime("%a, %b %e") %></li>
@@ -46,7 +65,7 @@
 	</div>
 	<div class="hidden" id="outgoing">
 		<ul>
-			<% @outgoing.each do |inv| %>
+			<% @out_invites.each do |inv| %>
 				<li> <%= inv.address %></li>
 				<li> <%= inv.time.strftime("%l:%M %p") %></li>
 				<li> <%= inv.date.strftime("%a, %b %e") %></li>
