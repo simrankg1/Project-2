@@ -1,9 +1,20 @@
+
 <% if @user.nil? %>
 
-  <p>No user found. <a href="/new">Return to search</a></p>
+  <p>No user found. <a href="/newcontact">Return to search</a></p>
 
-<% else %>
+<%elsif current_user.users.include?(@user) %>
 
-  <%= @user.name %> <a href="/updatecontact/<%= @user.id %>"><button>Add</button></a>
+  <h3> You've already added this user! </h3>
+		<%=@user.username%><br>
+		<%= @user.name %>
 
-<% end %>
+
+<% else%>
+
+  <%=@user.username%><br>
+  <%= @user.name %> <a href="/updatecontact/<%= @user.id %>"><button>Add</button></a><br>
+  <%=@user.email %>
+<% end%>
+
+

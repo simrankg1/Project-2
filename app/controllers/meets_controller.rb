@@ -4,7 +4,15 @@ before_filter :authenticate_user!
   def index
     @user = current_user
     @meets= @user.meets
-    @contacts = @user.users
+    @confirmed_contacts=[]
+    @pending_contacts= []
+    User.all.each do |user|
+      if user.users.include?(@user) && @user.users.include?(user)
+        @confirmed_contacts << user
+      else @user.users.include?(user) 
+        @pending_contacts << user
+      end
+    end
     @outgoing = Invite.where(ownerid: @user.id)
     @incoming = @user.invites.where('ownerid != ?', @user.id)
   end
