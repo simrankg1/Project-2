@@ -1,0 +1,16 @@
+<div class="meets">
+<%=link_to "New Meet", "/contacts" %>
+<h1> Your Scheduled Meet-Ups </h1>
+
+<% @meets.each do |meet| %>
+     <a href="#">
+     	<div>  
+		      <p><%= meet.address %></p>
+		      <p><%= meet.time.strftime("%l:%M %p") %></p>
+		      <% meet.users.each do |user| %>
+		      	<p> <%= user.name unless user.id == current_user.id %> </p>
+		      <% end %>
+    	</div>
+    </a>
+<% end %>
+</div>
