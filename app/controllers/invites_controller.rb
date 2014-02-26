@@ -16,14 +16,10 @@ before_filter :authenticate_user!
     
     new_invite.users << current_user
 
-    binding.pry
-
     params[:users].each do |x|
         user = User.find_by_id(x)
         new_invite.users << user
     end
-
-    binding.pry
 
     redirect_to :root
   end
