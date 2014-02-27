@@ -28,6 +28,10 @@ class ContactsController < ActionController::Base
   def show
     id = params[:id]
     @user = User.find(id)
+    respond_to do |f|
+      f.html
+      f.json {render :json=> @user}
+    end
   end
 
 end

@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Project2</title>
+ 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvHawiMNKSViHecR02Ns3b0aBjqNSzNvk&sensor=false"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -9,11 +10,20 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 </head>
 <body>
+<element id="user_id" data-id="<%=current_user.id%>">
+<h1 id="app_name">PowWow</h1>
 
 <p class="notice"> <%=notice %> </p>
 <p class="alert"> <%=alert %> </p>
 
 <%= yield %>
-
+<div>
+<ul class="nav">
+<li><a id="pbtn" href="#">Profile</a></li>
+<li><a id="ibtn" href="#">Invites</a></li>
+<li><a id="ebtn" href="#">Events</a></li>
+<li><a id="cbtn" href="#">Contacts</a></li>
+</ul>
+</div>
 </body>
 </html>
