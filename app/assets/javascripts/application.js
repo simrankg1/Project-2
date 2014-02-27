@@ -119,12 +119,10 @@ $(document).on('ready page:load', function(){
       });
 
 
-
-
     function showmeets(){
     // e.preventDefault();
     $("#content").empty();
-    var meets = $("<div id=\"meets\"> <a href=\"#\"><button> New Meet </button> </a></div>");
+    var meets = $("<div id=\"meets\"><a href=\"/contacts\"><button id=\"newmeetbtn\"> New Meet </button></a></div>");
     var meet_list = $("<div id=\"meet_container\"> </div>");
     $.get("/meets.json").done(function(data){
       $(data).each(function(index, meet){
@@ -167,18 +165,24 @@ $(document).on('ready page:load', function(){
   }
 
 
+  $("#ebtn").on('click', function(e){
+    e.preventDefault();
+    showmeets();
+  }); 
+
+  // $("#content").on("click", "#newmeetbtn", function(e){
+  //   e.preventDefault();
+  //   $("#content").empty();
+  //   var contact_select = $("<div id=\"contact_select\"></div>");
+  //   var contactsHTML = HandlebarsTemplates.contacts(    );
+  //   contact_select.append(contactsHTML);
+  //   $("#content").append(contact_select);
+  // });
 
 
-
-
-
-
-$("#ebtn").on('click', function(e){
-  e.preventDefault();
   showmeets();
-}); 
 
-showmeets();
+
 
 
 });

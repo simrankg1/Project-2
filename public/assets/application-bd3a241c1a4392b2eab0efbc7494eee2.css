@@ -8,8 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
+
+
  */
 
 #map-canvas { height: 200px; width: 200px }
@@ -149,34 +149,3 @@ ul {
 .meet a {
   text-decoration: none;
 }
-
-.inc_invite :hover{
-	background-color: blue;
-}
-
-.out_invite :hover{
-	background-color:yellow;
-}
-
-.s_inc_inv{
-	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:scroll;
-	width:80%;
-	text-align: center;
-}
-
-.s_out_inv{
-	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:scroll;
-	width:80%;
-	text-align: center;
-}
-
-#newmeetbtn {
-  margin-top: 50px;
-}
-
