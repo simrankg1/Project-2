@@ -69,9 +69,29 @@ $(document).on('ready page:load', function(){
     var meet_list = $("<div id=\"meet_container\"> </div>");
     $.get("/meets.json").done(function(data){
       $(data).each(function(index, meet){
-        var meetHTML = HandlebarsTemplates.meets(meet);
-        meet_list.append(meetHTML);
+        // console.log(this);
+
+    var a_p = "";
+    var d = new Date(this.time);
+    var curr_hour = d.getHours()+8;
+    // console.log(curr_hour+8);
+    if (curr_hour < 12)
+       {a_p = "AM";}
+    else
+       {a_p = "PM";}
+    if (curr_hour === 0)
+       {curr_hour = 12;}
+    if (curr_hour > 12)
+       {curr_hour = curr_hour - 12;}
+    var curr_min = d.getMinutes();
+
+console.log(curr_hour + " : " + curr_min + " " + a_p);
+
+
+        // var meetHTML = HandlebarsTemplates.meets(meet);
+        // meet_list.append(meetHTML);
       });
+
         meets.append(meet_list);
       $("#content").append(meets);
     });
