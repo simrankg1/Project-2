@@ -139,4 +139,13 @@ ul {
 	width: 250px;
 }
 
+.meet {
+  background-color: White;
+  width: 400px;
+  margin: 20px auto;
+  border-radius: 5px;
+}
 
+.meet a {
+  text-decoration: none;
+}

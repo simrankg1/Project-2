@@ -1,7 +1,12 @@
 source 'https://rubygems.org'
 
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
+
+gem "dotenv", "~> 0.10.0"
+
+gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'pry-rails', :group => :development
 
@@ -28,6 +33,9 @@ gem 'turbolinks'
 
 gem 'handlebars_assets'
 
+gem "sinatra", "~> 1.4.4"
+
+gem "twilio-ruby", "~> 3.11.5"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
