@@ -16,7 +16,7 @@ before_filter :authenticate_user!
     @confirmed_contacts=[]
     @out_pending_contacts= []
     @inc_pending_contacts= []
-    ##all users as pending or no contacts at all"
+    # all users as pending or no contacts at all
     unless @user.users.nil?
       @user.users.each do |user|
         if user.users.include?(@user) && @user.users.include?(user)
@@ -71,8 +71,10 @@ before_filter :authenticate_user!
     id = params[:id]
     meet = Meet.find_by_id(id)
 
-    # message to invite.users.where(id != current_user.id)
-    #    CANCEL   current_user cancelled your meet on month day
+    users = meet.users.where('id != ?', current_user.id)
+    users.each do |u|
+      send_text_message(u.id, "#{current_user.name} cencelled your meet on #{meet.date}")
+    end
 
     meet.destroy
 

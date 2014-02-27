@@ -1,6 +1,8 @@
 class InvitesController < ApplicationController
 before_filter :authenticate_user!
 
+  include ApplicationHelper
+
   def index
     @user = current_user
     @out_invites = Invite.where(ownerid: @user.id)
@@ -27,9 +29,8 @@ before_filter :authenticate_user!
     params[:users].each do |x|
         user = User.find_by_id(x)
         new_invite.users << user
+        send_text_message(user.id, "#{current_user.name} sent you an invite!")
     end
-
-    send_text_message
 
     redirect_to :root
   end
@@ -49,7 +50,7 @@ before_filter :authenticate_user!
     new_meet = Meet.create(parameters)
     new_meet.users << users
     
-    confirmation_text_message
+    send_text_message(id, "#{current_user.name} confirmed your invite!")
 
     invite.destroy
 
@@ -93,8 +94,10 @@ before_filter :authenticate_user!
     
     invite.update_attributes(parameters)
 
-    # message to invite.users.where(id != current_user.id)
-    #    RESCEDULE INCOMING   current_user wants to reschedule your invitation. check your incoming invites.
+    users = invite.users.where('id != ?', current_user.id)
+    users.each do |u|
+      send_text_message(u.id, "#{current_user.name} wants to reschedule the invitation for #{invite.date}. Check your incoming invites.")
+    end
 
     render invite_path(invite)
   end
@@ -103,56 +106,18 @@ before_filter :authenticate_user!
     id = params[:id]
     invite = Invite.find_by_id(id)
 
-    # message to invite.users.where(id != current_user.id)
-    #    CANCEL OUTGOING   current_user cancelled their invitation on month day
-    #    DECLINE INCOMING  current_user declined your invitation
+    if current_user.id == invite.ownerid
+      users = invite.users.where('id != ?', current_user.id)
+      users.each do |u|
+        send_text_message(u.id, "#{current_user} cancelled their invation on #{invite.date}")
+      end
+    else
+      send_text_message(invite.ownerid, "#{current_user} declined your invitation on #{invite.date}")
+    end
 
     invite.destroy
 
-    redirect_to :invites_path
-  end
-
-  private
-
-  def send_text_message
-
-    id = params[:users].first
-    user = User.find_by_id(id)
-
-    @contact = user
-
-    number_to_send_to = "+1#{@contact.phone}"
-
-    account_sid = ENV['ACCOUNT_SID']
-    auth_token = ENV['AUTH_TOKEN']
-    twilio_phone_number = ENV['TWILIO_PHONE']
-
-    @twilio_client = Twilio::REST::Client.new account_sid, auth_token
-
-    @twilio_client.account.sms.messages.create(
-      :from => ENV['TWILIO_PHONE'],
-      :to => number_to_send_to,
-      :body => "#{current_user.name} sent you an invite!")
-  end
-
-  def confirmation_text_message
-    id = params[:id]
-    invite = Invite.find(id)
-    recipient_id = invite.ownerid
-    @invitee = User.find(recipient_id)
-    
-    number_to_send_to = "+1#{@invitee.phone}"
-
-    account_sid = ENV['ACCOUNT_SID']
-    auth_token = ENV['AUTH_TOKEN']
-    twilio_phone_number = ENV['TWILIO_PHONE']
-
-    @twilio_client = Twilio::REST::Client.new account_sid, auth_token
-
-    @twilio_client.account.sms.messages.create(
-      :from => ENV['TWILIO_PHONE'],
-      :to => number_to_send_to,
-      :body => "#{current_user.name} confirmed your invite!")
+    redirect_to :root
   end
 
 end
