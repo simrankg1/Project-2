@@ -4,29 +4,50 @@
   <% @invite_contact.each do |a| %>
      <%= User.find_by_id(a).name %>
   <% end %>
-<br>
+<br><br>
 
-<%= form_for @invite, url: invites_path(@invite, :users => @invite_contact) do |f| %>
-  <%= f.label :date %>
-  <%= f.date_field :date %>
-  <br>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-  <br>
-  <%= f.label :time %>
-  <%= f.time_field :time %>
-  <br>
+<label>Address</label> <br>
+<input id="address" type="textbox" placeholder="414 Brannan St"> <br>
+<label>Time</label> <br>
+<input id="time" type="time" > <br>
+<label>Date</label> <br>
+<input id="date" type="date" > <br>
+<input type="button" value="Invite" onclick="codeAddress()">
 
-  <br>
-
-  <%= f.submit class: "btn btn-primary" %>
+<%= javascript_tag do %>
+  window.userID = <%= @invite_contact.first %>;
 <% end %>
 
+<script type="text/javascript">
 
+var geocoder;
+function initialize_geocoding() {
+  geocoder = new google.maps.Geocoder();
+};
 
+function codeAddress() {
+  var address = document.getElementById('address').value;
+  var time = document.getElementById('time').value;
+  var date = document.getElementById('date').value;
+  var users = [userID]
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      var lat = results[0].geometry.location.d;
+      var lng = results[0].geometry.location.e;
+      $.ajax({
+        method : "post",
+        url : "/invites",
+        data : { invite : { address : address, time : time, date : date, lat : lat, lng : lng }, users : users }
+      }).done(function() {
+        console.log(lat);
+      });
+    } else {
+      alert("We couldn't find that address. Check for spelling, or try entering more information." + status);
+    }
+  });
+};
 
+google.maps.event.addDomListener(window, 'load', initialize_geocoding);
+google.maps.event.addDomListener(window, 'page:load', initialize_geocoding);
 
-
-
-
-
+</script>
