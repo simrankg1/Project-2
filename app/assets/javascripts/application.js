@@ -70,21 +70,27 @@ $(document).on('ready page:load', function(){
         var inc = $("<div id=\"inc_invites\"> </div>");
         var out = $("<div id=\"out_invites\"> </div>");
 
-        $(data.inc_invites).each(function(index, invite){
-          maketime.apply(invite);
-          var inviteHTML = HandlebarsTemplates.incinvites(invite);
-          inc.append(inviteHTML);
-          invites.append(inc); 
-          $("#content").append(invites);
-        });
+          if (data.inc_invites[0] != null) {
+             $(data.inc_invites).each(function(index, invite){
+              maketime.apply(invite);
+              var inviteHTML = HandlebarsTemplates.incinvites(invite);
+              inc.append(inviteHTML);
+              invites.append(inc); 
+              $("#content").append(invites);
+              });
+         } else {
+            inc.append("<p>You don't have any incoming invites currently</p>");
+            invites.append(inc);
+            $("#content").append(invites);
+        }
 
-        $(data.out_invites).each(function(index, invite){
-          maketime.apply(invite);
-          var inviteHTML = HandlebarsTemplates.outinvites(invite);
-          out.append(inviteHTML);
-          out.hide();
-          invites.append(out); 
-        });
+          $(data.out_invites).each(function(index, invite){
+            maketime.apply(invite);
+            var inviteHTML = HandlebarsTemplates.outinvites(invite);
+            out.append(inviteHTML);
+            out.hide();
+            invites.append(out); 
+          });
       });
   });
 
@@ -95,7 +101,7 @@ $(document).on('ready page:load', function(){
 
 
 
-  
+
 
       $("#content").on('click',"#incbtn", function(e){
           e.preventDefault();
@@ -150,6 +156,32 @@ $(document).on('ready page:load', function(){
         });
       });
 
+      $("#content").on("click", ".conf_inv", function(){
+       var id= $(this).data('id');
+        $.get("/invites/"+id+"/confirm");
+      });
+
+      $("#content").on("click", ".decl_inv", function(){
+       var id= $(this).data('id');
+       $.ajax({
+        type: "delete",
+        url: "/invites/"+id
+        });
+      });
+
+      $("#content").on("click", ".decl_meet", function(){
+       var id= $(this).data('id');
+       $.ajax({
+        type: "delete",
+        url: "/meets/"+id
+        }).done(function(){
+          showmeets();
+        });
+      });
+
+
+
+
 
 
 
@@ -192,16 +224,20 @@ $(document).on('ready page:load', function(){
     var meets = $("<div id=\"meets\"><a href=\"/contacts\"><button id=\"newmeetbtn\"> New Meet </button></a></div>");
     var meet_list = $("<div id=\"meet_container\"> </div>");
     $.get("/meets.json").done(function(data){
-      $(data).each(function(index, meet){
-        
+      
+    if (data[0] != null) { 
+       $(data).each(function(index, meet){
       maketime.apply(meet);
-
       var meetsHTML = HandlebarsTemplates.meets(meet);
         meet_list.append(meetsHTML);
       });
-
-        meets.append(meet_list);
+      meets.append(meet_list);
       $("#content").append(meets);
+     } else {
+      meet_list.append("<p>You don't have any meets currently</p>");
+      meets.append(meet_list);
+      $("#content").append(meets);
+    }
     });
   }
 
