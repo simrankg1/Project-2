@@ -6,6 +6,7 @@ before_filter :authenticate_user!
   end
 
   def new
+    
   end
 
   def create
