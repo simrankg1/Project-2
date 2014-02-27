@@ -68,10 +68,15 @@ before_filter :authenticate_user!
   end
 
   def destroy
-      @meet = current_user.meets.where(:id => params[:id])
+    id = params[:id]
+    meet = Meet.find_by_id(id)
 
-      meet.delete
-      redirect_to(meets_path)
+    # message to invite.users.where(id != current_user.id)
+    #    CANCEL   current_user cancelled your meet on month day
+
+    meet.destroy
+
+    redirect_to :root
   end
 
 
