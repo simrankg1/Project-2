@@ -29,7 +29,7 @@ before_filter :authenticate_user!
   def confirm
     id = params[:id]
     invite = Invite.find_by_id(id)
-
+#binding.pry
     parameters = {}
     parameters["time"] = invite.time
     parameters["date"] = invite.date
@@ -42,9 +42,12 @@ before_filter :authenticate_user!
     new_meet = Meet.create(parameters)
     new_meet.users << users
     
+    confirmation_text_message
+
     invite.destroy
 
     flash[:alert] = "Confirmed!"
+    
     redirect_to :root
   end
 
@@ -89,11 +92,9 @@ before_filter :authenticate_user!
 
   def send_text_message
 
-    #@user = current_user
-
     id = params[:users].first
     user = User.find_by_id(id)
-    
+
     @contact = user
 
     number_to_send_to = "+1#{@contact.phone}"
@@ -108,6 +109,28 @@ before_filter :authenticate_user!
       :from => ENV['TWILIO_PHONE'],
       :to => number_to_send_to,
       :body => "#{current_user.name} sent you an invite!")
+  end
+
+  def confirmation_text_message
+    #raise params.inspect
+    # binding.pry    
+    id = params[:id]
+    invite = Invite.find(id)
+    recipient_id = invite.ownerid
+    @invitee = User.find(recipient_id)
+    
+    number_to_send_to = "+1#{@invitee.phone}"
+
+    account_sid = ENV['ACCOUNT_SID']
+    auth_token = ENV['AUTH_TOKEN']
+    twilio_phone_number = ENV['TWILIO_PHONE']
+
+    @twilio_client = Twilio::REST::Client.new account_sid, auth_token
+
+    @twilio_client.account.sms.messages.create(
+      :from => ENV['TWILIO_PHONE'],
+      :to => number_to_send_to,
+      :body => "#{current_user.name} confirmed your invite!")
   end
 
 end
