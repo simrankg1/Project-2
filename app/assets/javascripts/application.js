@@ -100,6 +100,24 @@ $(document).on('ready page:load', function(){
         $("#out_invites").show();
       });
 
+      $("#content").on('click', ".inc_invite", function(){
+        var id = $(this).data('id');
+        $.get("/invites/"+id+".json").done(function(data){
+            var incinviteHTML = HandlebarsTemplates.incinvite(data);
+              $("#content").empty();
+              $("#content").append(incinviteHTML);
+        });
+      });
+
+      $("#content").on('click', ".out_invite", function(){
+        var id = $(this).data('id');
+        $.get("/invites/"+id+".json").done(function(data){
+            var outinviteHTML = HandlebarsTemplates.outinvite(data);
+              $("#content").empty();
+              $("#content").append(outinviteHTML);
+        });
+      });
+
 
     function showmeets(){
     // e.preventDefault();
