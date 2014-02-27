@@ -20,14 +20,15 @@ class ContactsController < ActionController::Base
   def update
     id = params[:id]
     user = User.find_by_id(id)
-    current_user.users << user
-    # user.users << current_user
-    flash[:alert] = "Successfully added #{user.name}!"
-  
-      if current_user.users != user
+ 
+      if !current_user.users.include?(user)
         text_contact_req
-      #else
-       # contact_confirmation
+        current_user.users << user
+    # user.users << current_user
+        flash[:alert] = "Successfully added #{user.name}!"
+
+      else
+        contact_confirmation
       end
 
     redirect_to :root
@@ -50,7 +51,7 @@ class ContactsController < ActionController::Base
     user = User.find_by_id(id)
 
     @contact = user
-#binding.pry
+
     number_to_send_to = "+1#{@contact.phone}"
 
     account_sid = ENV['ACCOUNT_SID']
@@ -65,25 +66,25 @@ class ContactsController < ActionController::Base
       :body => "#{current_user.name} wants to add you as a contact!")
   end
 
-  # def contact_confirmation
+  def contact_confirmation
 
-  #   id = params[:id]
-  #   user = User.find_by(id)
-  #   @invitee = user
+    id = params[:id]
+    user = User.find_by(id)
+    @invitee = user
     
-  #   number_to_send_to = "+1#{@invitee.phone}"
+    number_to_send_to = "+1#{@invitee.phone}"
 
-  #   account_sid = ENV['ACCOUNT_SID']
-  #   auth_token = ENV['AUTH_TOKEN']
-  #   twilio_phone_number = ENV['TWILIO_PHONE']
+    account_sid = ENV['ACCOUNT_SID']
+    auth_token = ENV['AUTH_TOKEN']
+    twilio_phone_number = ENV['TWILIO_PHONE']
 
-  #   @twilio_client = Twilio::REST::Client.new account_sid, auth_token
+    @twilio_client = Twilio::REST::Client.new account_sid, auth_token
 
-  #   @twilio_client.account.sms.messages.create(
-  #     :from => ENV['TWILIO_PHONE'],
-  #     :to => number_to_send_to,
-  #     :body => "#{current_user.name} confirmed your invite!")
-  # end
+    @twilio_client.account.sms.messages.create(
+      :from => ENV['TWILIO_PHONE'],
+      :to => number_to_send_to,
+      :body => "#{current_user.name} confirmed your invite!")
+  end
 
 
 end
