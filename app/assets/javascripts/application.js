@@ -66,7 +66,7 @@ $(document).on('ready page:load', function(){
       $("#content").empty();
       $.get("/invites.json").done(function(data){
 
-        var invites = $("<div id=\"invites\"><h2>Invites</h2><h4 id=\"incbtn\">incoming</h4>   <h4 id=\"outbtn\">outgoing</h4></div>");
+        var invites = $("<div id=\"invites\"><h2>Invites</h2><button id=\"incbtn\">incoming</button>   <button id=\"outbtn\">outgoing</button></div>");
         var inc = $("<div id=\"inc_invites\"> </div>");
         var out = $("<div id=\"out_invites\"> </div>");
 
@@ -86,14 +86,14 @@ $(document).on('ready page:load', function(){
       });
   });
 
-      $("#incbtn").on('click', function(e){
+      $("#content").on('click',"#incbtn", function(e){
           e.preventDefault();
           e.stopPropagation();
           $("#out_invites").hide();
           $("#inc_invites").show();
       });
 
-      $("h4#outbtn").on('click', function(e){
+      $("#content").on('click', "#outbtn", function(e){
         e.preventDefault();
         e.stopPropagation();
         $("#inc_invites").hide();
