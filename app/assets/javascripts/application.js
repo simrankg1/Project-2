@@ -23,7 +23,7 @@ $(document).on('ready page:load', function(){
 
   $("#cbtn").on('click',function(e){
     e.preventDefault();
-    $("#content").html("");
+    $("#content").empty();
     $.get("/getcontacts.json").done(function(data){
       var contacts = $("<div id=\"contacts\"><h1>Contacts</h1><button><a href=\"/newcontact\">Add contact</a></button></div>");
       var confirmed = $("<div id=\"confirmed_contacts\"></div>");
@@ -53,83 +53,114 @@ $(document).on('ready page:load', function(){
 
   $("#pbtn").on('click',function(e){
     e.preventDefault();
-    $("#content").html("");
+    $("#content").empty();
     var id = $("#user_id").data('id');
     $.get("/contact/"+id+".json").done(function(data){
-            var contactHTML = HandlebarsTemplates.uprofile(data);
-              $("#content").append(contactHTML);
+            var profileHTML = HandlebarsTemplates.uprofile(data);
+              $("#content").append(profileHTML);
     }); 
   });
 
+  $("#ibtn").on('click', function(e){
+      e.preventDefault();
+      $("#content").empty();
+      $.get("/invites.json").done(function(data){
 
-// data.confirmed_contacts.each(function(index,contact){
-//   var contactHTML = HandlebarsTemplates.confirmedcontacts(contact)
-//     $("content").append(contactHTML);
-// });
+        var invites = $("<div id=\"invites\"><h2>Invites</h2><h4 id=\"incbtn\">incoming</h4>   <h4 id=\"outbtn\">outgoing</h4></div>");
+        var inc = $("<div id=\"inc_invites\"> </div>");
+        var out = $("<div id=\"out_invites\"> </div>");
+
+        $(data.inc_invites).each(function(index, invite){
+          var inviteHTML = HandlebarsTemplates.incinvites(invite);
+          inc.append(inviteHTML);
+          invites.append(inc); 
+          $("#content").append(invites);
+        });
+
+        $(data.out_invites).each(function(index, invite){
+          var inviteHTML = HandlebarsTemplates.outinvites(invite);
+          out.append(inviteHTML);
+          out.hide();
+          invites.append(out); 
+        });
+      });
+  });
+
+      $("#incbtn").on('click', function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          $("#out_invites").hide();
+          $("#inc_invites").show();
+      });
+
+      $("h4#outbtn").on('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $("#inc_invites").hide();
+        $("#out_invites").show();
+      });
+
+
+
+
+    function showmeets(){
+    // e.preventDefault();
+    $("#content").empty();
+    var meets = $("<div id=\"meets\"> <a href=\"#\"><button> New Meet </button> </a></div>");
+    var meet_list = $("<div id=\"meet_container\"> </div>");
+    $.get("/meets.json").done(function(data){
+      $(data).each(function(index, meet){
+        
+
+    var a_p = "";
+    var t = new Date(this.time);
+    var curr_hour = t.getHours()+8;
+    if (curr_hour < 12)
+       {a_p = "AM";}
+    else
+       {a_p = "PM";}
+    if (curr_hour === 0)
+       {curr_hour = 12;}
+    if (curr_hour > 12)
+       {curr_hour = curr_hour - 12;}
+    var curr_min = t.getMinutes();
+    var time = curr_hour + ":" + curr_min + " " + a_p;
+
+    var m_names = new Array("Jan", "Feb", "Mar", 
+    "Apr", "May", "Jun", "Jul", "Aug", "Sep", 
+    "Oct", "Nov", "Dec");
+
+    var d = new Date(this.date);
+    var curr_date = d.getDate();
+    var curr_month = d.getMonth();
+    var curr_year = d.getFullYear();
+    var date = m_names[curr_month] + " " + curr_date;
+       
+    meet.showtime = time;
+    meet.showdate = date;
+
+      var meetHTML = HandlebarsTemplates.meets(meet);
+        meet_list.append(meetHTML);
+      });
+
+        meets.append(meet_list);
+      $("#content").append(meets);
+    });
+  }
 
 
 
 
 
 
-	// $("#cbtn").on('click',function(e){
-	// 	e.preventDefault();
-	// 	$(".meets").hide();
-	// 	$("#invites").hide();
-	// 	$("#profile").hide();
-	// 	$("#contacts").show();
-	// 	$("#contact").html("");
- //      $.get("/getcontacts.json").done(function(data){
- //          $(data).each(function(index, contact){
- //            var contactHTML = HandlebarsTemplates.contacts(contact);
- //              $("#contact").append(contactHTML);
- //          });
- //      });
-	// });
- //  $("#contact").click(function(e){
- //    e.preventDefault();
- //    $(".ind").css("color","yellow");
- //  });
 
-	// $("#ebtn").on('click',function(e){
-	// 	e.preventDefault();
-	// 	$("#contacts").hide();
-	// 	$("#invites").hide();
-	// 	$("#profile").hide();
-	// 	$(".meets").show();
-	// });
-	// $("#ibtn").on('click',function(e){
-	// 	e.preventDefault();
-	// 	$("#contacts").hide();
-	// 	$(".meets").hide();
-	// 	$("#profile").hide();
-	// 	$("#invites").show();
-	// 	$("#outgoing").show();
-	// 	$("#incoming").hide();
-	// });
-	// $("#pbtn").on("click", function(e){
-	// 	e.preventDefault();
-	// 	$("#contacts").hide();
-	// 	$("#invites").hide();
-	// 	$(".meets").hide();
-	// 	$("#profile").show();
-	// });
-	// $("#pbtn").on("click", function(e){
-	// 	e.preventDefault();
-	// 	$("#contacts").hide();
-	// 	$("#invites").hide();
-	// 	$(".meets").hide();
-	// 	$("#profile").show();
-	// });
-	// $("#inc").on('click',function(e){
-	// 	e.preventDefault();
-	// 	$("#outgoing").hide();
-	// 	$("#incoming").show();
-	// });
-	// $("#out").on('click',function(e){
-	// 	e.preventDefault();
-	// 	$("#incoming").hide();
-	// 	$("#outgoing").show();
-	// });
+
+$("#ebtn").on('click', function(e){
+  e.preventDefault();
+  showmeets();
+}); 
+
+showmeets();
+
 
 });
