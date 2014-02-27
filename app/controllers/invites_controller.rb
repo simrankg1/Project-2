@@ -29,7 +29,7 @@ before_filter :authenticate_user!
         new_invite.users << user
     end
 
-    send_text_message
+    # send_text_message
 
     redirect_to :root
   end
