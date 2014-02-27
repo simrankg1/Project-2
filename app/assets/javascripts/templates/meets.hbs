@@ -1,9 +1,8 @@
 
      	<div class="meet">  
      	<a href="/meets/{{id}}">
-		      <p>{{address}}</p>
-		      {{date}}
-		      {{time}}
+		      <p class="address">{{address}}</p>
+		      {{showdate}} {{showtime}}<br>
 		     {{#each users}}
    			  {{this.name}}<br>
 			{{/each}}
