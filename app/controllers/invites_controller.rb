@@ -29,7 +29,6 @@ before_filter :authenticate_user!
   def confirm
     id = params[:id]
     invite = Invite.find_by_id(id)
-#binding.pry
     parameters = {}
     parameters["time"] = invite.time
     parameters["date"] = invite.date
@@ -112,8 +111,6 @@ before_filter :authenticate_user!
   end
 
   def confirmation_text_message
-    #raise params.inspect
-    # binding.pry    
     id = params[:id]
     invite = Invite.find(id)
     recipient_id = invite.ownerid
