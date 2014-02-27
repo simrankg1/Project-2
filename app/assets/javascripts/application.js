@@ -66,7 +66,7 @@ $(document).on('ready page:load', function(){
       $("#content").empty();
       $.get("/invites.json").done(function(data){
 
-        var invites = $("<div id=\"invites\"><h2>Invites</h2><a href=\"#\" id=\"incbtn\">incoming</a><a href=\"#\" id=\"outbtn\">outgoing</a></div>");
+        var invites = $("<div id=\"invites\"><h2>Invites</h2><h4 id=\"incbtn\">incoming</h4>   <h4 id=\"outbtn\">outgoing</h4></div>");
         var inc = $("<div id=\"inc_invites\"> </div>");
         var out = $("<div id=\"out_invites\"> </div>");
 
@@ -85,18 +85,20 @@ $(document).on('ready page:load', function(){
         });
       });
   });
-  
-   $("#incbtn").on('click', function(e){
-        e.preventDefault();
-  $("#out_invites").hide();
-  $("#inc_invites").show();
-});
 
-$("#outbtn").on('click', function(e){
-  e.preventDefault();
-  $("#inc_invites").hide();
-  $("#out_invites").show();
-});
+      $("#incbtn").on('click', function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          $("#out_invites").hide();
+          $("#inc_invites").show();
+      });
+
+      $("h4#outbtn").on('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $("#inc_invites").hide();
+        $("#out_invites").show();
+      });
 
 
 
