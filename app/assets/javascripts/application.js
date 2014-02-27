@@ -213,9 +213,13 @@ $(document).on('ready page:load', function(){
 
   $('#content').on('click', '#biosubmit', function(){
     var bio_text = $('#bio').val();
-    var data = { user : { bio : bio_text } };
-    var id = 1000;
-    $.post("/users/" + id + "/updatebio");
+    var data = { bio : bio_text };
+    var id = $('#user_id').data('id');
+    $.ajax({
+      method: "post",
+      url: "/users/" + id + "/updatebio",
+      data: data
+    });
   });
 
 
