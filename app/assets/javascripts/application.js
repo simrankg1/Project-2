@@ -61,9 +61,48 @@ $(document).on('ready page:load', function(){
     }); 
   });
 
+  $("#ibtn").on('click', function(e){
+      e.preventDefault();
+      $("#content").empty();
+      $.get("/invites.json").done(function(data){
 
-  $("#ebtn").on('click', function(e){
-    e.preventDefault();
+        var invites = $("<div id=\"invites\"><h2>Invites</h2><a href=\"#\" id=\"incbtn\">incoming</a><a href=\"#\" id=\"outbtn\">outgoing</a></div>");
+        var inc = $("<div id=\"inc_invites\"> </div>");
+        var out = $("<div id=\"out_invites\"> </div>");
+
+        $(data.inc_invites).each(function(index, invite){
+          var inviteHTML = HandlebarsTemplates.incinvites(invite);
+          inc.append(inviteHTML);
+          invites.append(inc); 
+          $("#content").append(invites);
+        });
+
+        $(data.out_invites).each(function(index, invite){
+          var inviteHTML = HandlebarsTemplates.outinvites(invite);
+          out.append(inviteHTML);
+          out.hide();
+          invites.append(out); 
+        });
+      });
+  });
+  
+   $("#incbtn").on('click', function(e){
+        e.preventDefault();
+  $("#out_invites").hide();
+  $("#inc_invites").show();
+});
+
+$("#outbtn").on('click', function(e){
+  e.preventDefault();
+  $("#inc_invites").hide();
+  $("#out_invites").show();
+});
+
+
+
+
+    function showmeets(){
+    // e.preventDefault();
     $("#content").empty();
     var meets = $("<div id=\"meets\"> <a href=\"#\"><button> New Meet </button> </a></div>");
     var meet_list = $("<div id=\"meet_container\"> </div>");
@@ -105,81 +144,21 @@ $(document).on('ready page:load', function(){
         meets.append(meet_list);
       $("#content").append(meets);
     });
-  });
+  }
 
 
 
 
 
 
-// data.confirmed_contacts.each(function(index,contact){
-//   var contactHTML = HandlebarsTemplates.confirmedcontacts(contact)
-//     $("content").append(contactHTML);
-// });
 
 
+$("#ebtn").on('click', function(e){
+  e.preventDefault();
+  showmeets();
+}); 
 
+showmeets();
 
-
-
-	// $("#cbtn").on('click',function(e){
-	// 	e.preventDefault();
-	// 	$(".meets").hide();
-	// 	$("#invites").hide();
-	// 	$("#profile").hide();
-	// 	$("#contacts").show();
-	// 	$("#contact").html("");
- //      $.get("/getcontacts.json").done(function(data){
- //          $(data).each(function(index, contact){
- //            var contactHTML = HandlebarsTemplates.contacts(contact);
- //              $("#contact").append(contactHTML);
- //          });
- //      });
-	// });
- //  $("#contact").click(function(e){
- //    e.preventDefault();
- //    $(".ind").css("color","yellow");
- //  });
-
-	// $("#ebtn").on('click',function(e){
-	// 	e.preventDefault();
-	// 	$("#contacts").hide();
-	// 	$("#invites").hide();
-	// 	$("#profile").hide();
-	// 	$(".meets").show();
-	// });
-	// $("#ibtn").on('click',function(e){
-	// 	e.preventDefault();
-	// 	$("#contacts").hide();
-	// 	$(".meets").hide();
-	// 	$("#profile").hide();
-	// 	$("#invites").show();
-	// 	$("#outgoing").show();
-	// 	$("#incoming").hide();
-	// });
-	// $("#pbtn").on("click", function(e){
-	// 	e.preventDefault();
-	// 	$("#contacts").hide();
-	// 	$("#invites").hide();
-	// 	$(".meets").hide();
-	// 	$("#profile").show();
-	// });
-	// $("#pbtn").on("click", function(e){
-	// 	e.preventDefault();
-	// 	$("#contacts").hide();
-	// 	$("#invites").hide();
-	// 	$(".meets").hide();
-	// 	$("#profile").show();
-	// });
-	// $("#inc").on('click',function(e){
-	// 	e.preventDefault();
-	// 	$("#outgoing").hide();
-	// 	$("#incoming").show();
-	// });
-	// $("#out").on('click',function(e){
-	// 	e.preventDefault();
-	// 	$("#incoming").hide();
-	// 	$("#outgoing").show();
-	// });
 
 });

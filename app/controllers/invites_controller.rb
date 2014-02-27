@@ -2,11 +2,19 @@ class InvitesController < ApplicationController
 before_filter :authenticate_user!
 
   def index
-    @invites = Invite.all
+    @user = current_user
+    @out_invites = Invite.where(ownerid: @user.id)
+    @inc_invites = @user.invites.where('ownerid != ?', @user.id)  
+    respond_to do |f|
+      f.json {render :json => {
+         :out_invites => @out_invites,
+         :inc_invites => @inc_invites
+          }}
+      end
   end
 
   def new
-    
+
   end
 
   def create
