@@ -21,15 +21,14 @@ class ContactsController < ActionController::Base
     id = params[:id]
     user = User.find_by_id(id)
  
-      if !current_user.users.include?(user)
-        text_contact_req
-        current_user.users << user
-    # user.users << current_user
-        flash[:alert] = "Successfully added #{user.name}!"
+    if !user.users.include?(current_user)
+      text_contact_req
+      flash[:alert] = "Successfully added #{user.name}!"
+    else
+      contact_confirmation
+    end
 
-      else
-        contact_confirmation
-      end
+    current_user.users << user
 
     redirect_to :root
   end
