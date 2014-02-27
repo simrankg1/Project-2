@@ -20,8 +20,8 @@ class ContactsController < ActionController::Base
   def update
     id = params[:id]
     user = User.find_by_id(id)
- 
     if !user.users.include?(current_user)
+    
       text_contact_req
       flash[:alert] = "Successfully added #{user.name}!"
     else
@@ -68,9 +68,9 @@ class ContactsController < ActionController::Base
   def contact_confirmation
 
     id = params[:id]
-    user = User.find_by(id)
+    user = User.find_by_id(id)
     @invitee = user
-    
+
     number_to_send_to = "+1#{@invitee.phone}"
 
     account_sid = ENV['ACCOUNT_SID']
