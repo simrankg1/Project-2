@@ -2,7 +2,10 @@
      	<div class="meet">  
      	<a href="/meets/{{id}}">
 		      <p>{{address}}</p>
-		      <p>{{meet date format="DD/MM/YYYY"}}</p>
-		     	{{users}}
+		      {{date}}
+		      {{time}}
+		     {{#each users}}
+   			  {{this.name}}<br>
+			{{/each}}
 		     </a>
     	</div>
