@@ -154,10 +154,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
-<<<<<<< HEAD
-=======
   dotenv (~> 0.10.0)
->>>>>>> upstream/master
   dotenv-rails
   handlebars_assets
   jbuilder (~> 1.2)
