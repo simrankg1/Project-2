@@ -87,16 +87,29 @@ before_filter :authenticate_user!
   end
 
   def update
-    @invite = current_user.invites.where(:id => params[:id])
-    @invite.update_attributes(params[:invite])
-    render :show
+    id = params[:id]
+    invite = Invite.find_by_id(id)
+    parameters = params.require(:invite).permit(:time, :date, :address, :lat, :lng, :ownerid)
+    
+    invite.update_attributes(parameters)
+
+    # message to invite.users.where(id != current_user.id)
+    #    RESCEDULE INCOMING   current_user wants to reschedule your invitation. check your incoming invites.
+
+    render invite_path(invite)
   end
 
   def destroy
-    @invite = current_user.invites.where(:id => params[:id])
+    id = params[:id]
+    invite = Invite.find_by_id(id)
 
-    invite.delete
-    redirect_to(invites_path)
+    # message to invite.users.where(id != current_user.id)
+    #    CANCEL OUTGOING   current_user cancelled their invitation on month day
+    #    DECLINE INCOMING  current_user declined your invitation
+
+    invite.destroy
+
+    redirect_to :invites_path
   end
 
   private
