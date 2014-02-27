@@ -19,7 +19,7 @@ Project2::Application.routes.draw do
   end
 
   get '/users/:id/addbio', to: 'users#addbio', as: :add_bio_path
-  post '/users/:id/updatebio', to: 'users#updatebio', as: :update_bio_path
+  post '/users/:id/updatebio', to: 'users#update_bio', as: :update_bio_path
 
   end
 
