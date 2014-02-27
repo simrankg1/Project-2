@@ -14,6 +14,8 @@ Project2::Application.routes.draw do
   get '/updatecontact/:id', to: 'contacts#update'
   get '/contact/:id', to: 'contacts#show'
   get 'invites/:id/confirm', to: 'invites#confirm' 
-
+  devise_scope :user do
+    get "/users/sign_out", :to => "devise/sessions#destroy"
+  end
   end
 
