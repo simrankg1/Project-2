@@ -23,7 +23,7 @@ $(document).on('ready page:load', function(){
 
   $("#cbtn").on('click',function(e){
     e.preventDefault();
-    $("#content").html("");
+    $("#content").empty();
     $.get("/getcontacts.json").done(function(data){
       var contacts = $("<div id=\"contacts\"><h1>Contacts</h1><button><a href=\"/newcontact\">Add contact</a></button></div>");
       var confirmed = $("<div id=\"confirmed_contacts\"></div>");
@@ -53,13 +53,33 @@ $(document).on('ready page:load', function(){
 
   $("#pbtn").on('click',function(e){
     e.preventDefault();
-    $("#content").html("");
+    $("#content").empty();
     var id = $("#user_id").data('id');
     $.get("/contact/"+id+".json").done(function(data){
-            var contactHTML = HandlebarsTemplates.uprofile(data);
-              $("#content").append(contactHTML);
+            var profileHTML = HandlebarsTemplates.uprofile(data);
+              $("#content").append(profileHTML);
     }); 
   });
+
+
+  $("#ebtn").on('click', function(e){
+    e.preventDefault();
+    $("#content").empty();
+    var meets = $("<div id=\"meets\"> <a href=\"#\"><button> New Meet </button> </a></div>");
+    var meet_list = $("<div id=\"meet_container\"> </div>");
+    $.get("/meets.json").done(function(data){
+      $(data).each(function(index, meet){
+        var meetHTML = HandlebarsTemplates.meets(meet);
+        meet_list.append(meetHTML);
+      });
+        meets.append(meet_list);
+      $("#content").append(meets);
+    });
+  });
+
+
+
+
 
 
 // data.confirmed_contacts.each(function(index,contact){

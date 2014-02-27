@@ -6,6 +6,10 @@ before_filter :authenticate_user!
     @meets= @user.meets
     @out_invites = Invite.where(ownerid: @user.id)
     @inc_invites = @user.invites.where('ownerid != ?', @user.id)
+    respond_to do |f|
+      f.html
+      f.json {render :json => @meets.to_json(:include => { :users => { :only => :name} })}
+    end
   end
 
   def contacts
