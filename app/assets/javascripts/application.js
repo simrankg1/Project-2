@@ -242,9 +242,21 @@ $(document).on('ready page:load', function(){
   }
 
 
-  
+  $('#content').on('click', '#addbio', function(){
+    $('div#profile').empty();
+    $('div#profile').append("<h2>Bio</h2><textarea id=\"bio\" cols=\"30\" rows=\"7\"></textarea><br><button id=\"biosubmit\">Submit</button>");
+  });
 
-  
+  $('#content').on('click', '#biosubmit', function(){
+    var bio_text = $('#bio').val();
+    var data = { bio : bio_text };
+    var id = $('#user_id').data('id');
+    $.ajax({
+      method: "post",
+      url: "/users/" + id + "/updatebio",
+      data: data
+    });
+  });
 
 
   showmeets();

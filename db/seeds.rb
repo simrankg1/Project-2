@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-u = User.create(name: 'Bob', email: 'bob@aol.com', password: 'foobar123', password_confirmation: 'foobar123', phone: 1234567894, username: 'bobisno1')
-v = User.create(name: 'David', email: 'davidc@gmail.com', password: 'seahawks1', password_confirmation: 'seahawks1', phone: 1045678912, username: 'futbolover')
+u = User.create(name: 'Bob', email: 'bob@aol.com', password: 'foobar123', password_confirmation: 'foobar123', phone: 3104878017, username: 'bobisno1')
+v = User.create(name: 'David', email: 'davidc@gmail.com', password: 'seahawks1', password_confirmation: 'seahawks1', phone: 2023227067, username: 'futbolover')
 w = User.create(name: 'Sarah', email: 'saraht@yahoo.com', password: 'seattle88', password_confirmation: 'seattle88', phone: 3104878017, username: 'saraht98')
 
 a = Invite.create(date: Date.today, time: Time.now, address: '123 Crescent Avenue', lat: 4.5, lng: 5.6, ownerid: u.id)
