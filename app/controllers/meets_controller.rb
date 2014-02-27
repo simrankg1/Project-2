@@ -52,6 +52,9 @@ before_filter :authenticate_user!
 
   def show
     @meet= Meet.find(params[:id])
+    respond_to do |f|
+      f.json {render :json => @meet.to_json(:include => { :users => { :only => :name} })}
+    end
   end
 
   def edit
