@@ -76,6 +76,10 @@ before_filter :authenticate_user!
 
   def show
     @invite = Invite.find(params[:id])
+
+    respond_to do |f| 
+    f.json {render :json => @invite.to_json{include :users}}
+  end
   end
 
   def edit

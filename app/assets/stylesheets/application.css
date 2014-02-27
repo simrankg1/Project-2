@@ -149,3 +149,29 @@ ul {
 .meet a {
   text-decoration: none;
 }
+
+.inc_invite :hover{
+	background-color: blue;
+}
+
+.out_invite :hover{
+	background-color:yellow;
+}
+
+.s_inc_inv{
+	position:fixed;
+	top:90px;
+	height:70%;
+	overflow-y:scroll;
+	width:80%;
+	text-align: center;
+}
+
+.s_out_inv{
+	position:fixed;
+	top:90px;
+	height:70%;
+	overflow-y:scroll;
+	width:80%;
+	text-align: center;
+}
