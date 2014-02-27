@@ -6,11 +6,10 @@ before_filter :authenticate_user!
   end
 
   def new
-    @invite = Invite.new
   end
 
   def create
-    parameters = params.require(:invite).permit(:date, :time, :address)
+    parameters = params.require(:invite).permit(:date, :time, :address, :lat, :lng)
     parameters["ownerid"] = current_user.id
     new_invite = Invite.create(parameters)
     
