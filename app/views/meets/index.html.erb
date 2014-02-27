@@ -1,49 +1,8 @@
 
 
+<div id="content">
 
 
-<h1 id="app_name">PowWow</h1>
-
-
-<div id="contacts" class="hidden">
-
-	<h1>contacts </h1> 
-	<button><a href="/newcontact">Add contact</a></button>
-
-	<%unless @confirmed_contacts.empty?%>
-		<%@confirmed_contacts.each do |contact| %>
-			<div>
-			<%=link_to "#{contact.name} #{contact.email}", "/contact/#{contact.id}" %> </div>
-		<%end%>
-	<%else%>
-		<h3>you have no confirmed contacts</h3>
-	<%end%>
-	<br>
-	<h4>pending contact invitations: </h4>
-
-	<%unless @inc_pending_contacts.empty?%>
-	<h3>Pending Incoming</h3>
-		<%@inc_pending_contacts.each do |contact| %>
-			<div>
-				<%=contact.name %> <br><%=contact.email %>
-				<a href="/updatecontact/<%=contact.id%>"<button>confirm</button></a>
-			</div>
-		<%end%>
-	<%else%>
-		<h3>you have no pending incoming contacts</h3>
-	<%end%>
-
-
-	<%unless @out_pending_contacts.empty?%>
-	<h3>Pending Outgoing </h3>
-		<%@out_pending_contacts.each do |contact| %>
-			<div>
-				<%=contact.name %><br><%=contact.email %>
-			</div>
-		<%end%>
-	<%else%>
-		<h3>you have no pending outgoing contacts</h3>
-	<%end%>
 
 </div>
 
@@ -53,70 +12,9 @@
 
 
 
-<div class="hidden" id="invites">
-	<a id="inc" href="#">incoming</a>
-	<a id="out" href="#">outgoing</a>
-	<div id="incoming">
-		<ul>
-			<% @inc_invites.each do |inv| %>
-				<li> <%= inv.address %></li>
-				<li> <%= inv.time.strftime("%l:%M %p") %></li>
-				<li> <%= inv.date.strftime("%a, %b %e") %></li>
-				<a href="/invites/<%= inv.id %>/confirm"><button>Confirm</button></a>
-			<%end%>
-		</ul>
-	</div>
-	<div class="hidden" id="outgoing">
-		<ul>
-			<% @out_invites.each do |inv| %>
-				<li> <%= inv.address %></li>
-				<li> <%= inv.time.strftime("%l:%M %p") %></li>
-				<li> <%= inv.date.strftime("%a, %b %e") %></li>
-			<%end%>
-		</ul>
-	</div>
-</div>
-
-<div class="meets">
-<%=link_to "New Meet", "/contacts" %>
-<h1> Your Scheduled Meet-Ups </h1>
-
-<% @meets.each do |meet| %>
-     
-     	<div class="meet">  
-     	<a href="/meets/<%= meet.id %>">
-		      <p><%= meet.address %></p>
-		      <p><%= meet.time.strftime("%l:%M %p") %></p>
-		      <% meet.users.each do |user| %>
-		      	<p> <%= user.name unless user.id == current_user.id %> </p>
-		      <% end %>
-		     </a>
-    	</div>
-    
-<% end %>
-</div>
-<br>
-
-<div id="profile" class="hidden">
-<h1>Your PowWow Account</h1>
-<label>Username: </label><%= @user.username %><br>
-<label>Your Name: </label><%= @user.name %><br>
-<label>Your Email: </label><%= @user.email %><br>
-<label>Your Phone: </label><%= @user.phone %><br>
-<label>About You: </label><br>
-<input type="text_field" placeholder="tell us about you!"><br>
-<submit >
 
 
-<%=link_to "Sign out", destroy_user_session_path, method: "delete" %>
-</div>
 
 
-<div>
-<ul class="nav">
-<li><a id="pbtn" href="#">Profile</a></li>
-<li><a id="ibtn" href="#">Invites</a></li>
-<li><a id="ebtn" href="#">Events</a></li>
-<li><a id="cbtn" href="#">Contacts</a></li>
-</ul>
-</div>
+
+
