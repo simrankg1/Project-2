@@ -71,6 +71,7 @@ $(document).on('ready page:load', function(){
         var out = $("<div id=\"out_invites\"> </div>");
 
         $(data.inc_invites).each(function(index, invite){
+          maketime.apply(invite);
           var inviteHTML = HandlebarsTemplates.incinvites(invite);
           inc.append(inviteHTML);
           invites.append(inc); 
@@ -78,6 +79,7 @@ $(document).on('ready page:load', function(){
         });
 
         $(data.out_invites).each(function(index, invite){
+          maketime.apply(invite);
           var inviteHTML = HandlebarsTemplates.outinvites(invite);
           out.append(inviteHTML);
           out.hide();
@@ -85,6 +87,15 @@ $(document).on('ready page:load', function(){
         });
       });
   });
+
+  $("#ebtn").on('click', function(e){
+    e.preventDefault();
+    showmeets();
+  }); 
+
+
+
+  
 
       $("#content").on('click',"#incbtn", function(e){
           e.preventDefault();
@@ -103,6 +114,7 @@ $(document).on('ready page:load', function(){
       $("#content").on('click', ".inc_invite", function(){
         var id = $(this).data('id');
         $.get("/invites/"+id+".json").done(function(data){
+         maketime.apply(data);
             var incinviteHTML = HandlebarsTemplates.incinvite(data);
               $("#content").empty();
               $("#content").append(incinviteHTML);
@@ -112,22 +124,36 @@ $(document).on('ready page:load', function(){
       $("#content").on('click', ".out_invite", function(){
         var id = $(this).data('id');
         $.get("/invites/"+id+".json").done(function(data){
+          maketime.apply(data);
             var outinviteHTML = HandlebarsTemplates.outinvite(data);
               $("#content").empty();
               $("#content").append(outinviteHTML);
         });
       });
 
+      $("#content").on('click', ".meet", function(){
+        var id= $(this).data('id');
+        $.get("/meets/"+id+".json").done(function(data){
+          maketime.apply(data);
+          var meetHTML = HandlebarsTemplates.meet(data);
+          $("#content").empty();
+          $("#content").append(meetHTML);
+        });
+      });
 
-    function showmeets(){
-    // e.preventDefault();
-    $("#content").empty();
-    var meets = $("<div id=\"meets\"><a href=\"/contacts\"><button id=\"newmeetbtn\"> New Meet </button></a></div>");
-    var meet_list = $("<div id=\"meet_container\"> </div>");
-    $.get("/meets.json").done(function(data){
-      $(data).each(function(index, meet){
-        
+      $("#content").on('click', ".c_con", function(){
+        var id= $(this).data('id');
+        $.get("/contact/"+id+".json").done(function(data){
+          var contactHTML= HandlebarsTemplates.contact(data);
+          $("#content").empty();
+          $("#content").append(contactHTML);
+        });
+      });
 
+
+
+
+    function maketime() {
     var a_p = "";
     var t = new Date(this.time);
     var curr_hour = t.getHours()+8;
@@ -151,12 +177,27 @@ $(document).on('ready page:load', function(){
     var curr_month = d.getMonth();
     var curr_year = d.getFullYear();
     var date = m_names[curr_month] + " " + curr_date;
-       
-    meet.showtime = time;
-    meet.showdate = date;
 
-      var meetHTML = HandlebarsTemplates.meets(meet);
-        meet_list.append(meetHTML);
+    this.showtime = time;
+    this.showdate = date;
+    }
+
+
+
+
+
+    function showmeets(){
+    // e.preventDefault();
+    $("#content").empty();
+    var meets = $("<div id=\"meets\"><a href=\"/contacts\"><button id=\"newmeetbtn\"> New Meet </button></a></div>");
+    var meet_list = $("<div id=\"meet_container\"> </div>");
+    $.get("/meets.json").done(function(data){
+      $(data).each(function(index, meet){
+        
+      maketime.apply(meet);
+
+      var meetsHTML = HandlebarsTemplates.meets(meet);
+        meet_list.append(meetsHTML);
       });
 
         meets.append(meet_list);
@@ -165,19 +206,9 @@ $(document).on('ready page:load', function(){
   }
 
 
-  $("#ebtn").on('click', function(e){
-    e.preventDefault();
-    showmeets();
-  }); 
+  
 
-  // $("#content").on("click", "#newmeetbtn", function(e){
-  //   e.preventDefault();
-  //   $("#content").empty();
-  //   var contact_select = $("<div id=\"contact_select\"></div>");
-  //   var contactsHTML = HandlebarsTemplates.contacts(    );
-  //   contact_select.append(contactsHTML);
-  //   $("#content").append(contact_select);
-  // });
+  
 
 
   showmeets();
