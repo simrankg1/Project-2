@@ -10,7 +10,9 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 </head>
 <body>
+<%if user_signed_in? %>
 <element id="user_id" data-id="<%=current_user.id%>">
+<%end%>
 <h1 id="app_name">PowWow</h1>
 
 <p class="notice"> <%=notice %> </p>
