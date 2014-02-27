@@ -12,7 +12,7 @@
 <input id="time" type="time" > <br>
 <label>Date</label> <br>
 <input id="date" type="date" > <br>
-<input type="button" value="Invite" onclick="codeAddress()">
+<button id="create_invite" onclick="codeAddress()">Invite</a>
 
 <%= javascript_tag do %>
   window.userID = <%= @invite_contact.first %>;
@@ -39,7 +39,8 @@ function codeAddress() {
         url : "/invites",
         data : { invite : { address : address, time : time, date : date, lat : lat, lng : lng }, users : users }
       }).done(function() {
-        console.log(lat);
+        alert("Your invitation was sent!");
+        location.href = "/";
       });
     } else {
       alert("We couldn't find that address. Check for spelling, or try entering more information." + status);
@@ -49,5 +50,6 @@ function codeAddress() {
 
 google.maps.event.addDomListener(window, 'load', initialize_geocoding);
 google.maps.event.addDomListener(window, 'page:load', initialize_geocoding);
+
 
 </script>
