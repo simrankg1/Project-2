@@ -190,7 +190,6 @@ $(document).on('ready page:load', function(){
         url: "/meets/"+id
         }).done(function(){
           location.href= "/";
-          showmeets();
         });
       });
 
