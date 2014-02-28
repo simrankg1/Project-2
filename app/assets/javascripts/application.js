@@ -27,8 +27,8 @@ $(document).on('ready page:load', function(){
     $.get("/getcontacts.json").done(function(data){
       var contacts = $("<div class=\"centered\" id=\"contacts\"><h1>Contacts</h1><button><a href=\"/newcontact\">Add contact</a></button></div>");
       var confirmed = $("<div id=\"confirmed_contacts\"></div>");
-      var inc = $("<div id=\"inc_contacts\"><h3>Pending incoming</h3></div>");
-      var out = $("<div id=\"out_contacts\"><h3>Pending outgoing</h3></div>");
+      var inc = $("<hr><div id=\"inc_contacts\"><h3>Pending incoming</h3></div>");
+      var out = $("<hr><div id=\"out_contacts\"><h3>Pending outgoing</h3></div>");
 
           $(data.confirmed_contacts).each(function(index, contact){
             var contactHTML = HandlebarsTemplates.confirmedcontacts(contact);
@@ -66,7 +66,7 @@ $(document).on('ready page:load', function(){
       $("#content").empty();
       $.get("/invites.json").done(function(data){
 
-        var invites = $("<div class=\"centered\" id=\"invites\"><h2>Invites</h2><button id=\"incbtn\">incoming</button>   <button id=\"outbtn\">outgoing</button></div>");
+        var invites = $("<div class=\"centered\" id=\"invites\"><h2>Invites</h2><input id=\"incbtn\" type=\"submit\" value=\"Incoming\"> <input id=\"outbtn\" type=\"submit\" value=\"Outgoing\"></div>");
         var inc = $("<div id=\"inc_invites\"> </div>");
         var out = $("<div id=\"out_invites\"> </div>");
 
@@ -90,12 +90,12 @@ $(document).on('ready page:load', function(){
               var inviteHTML = HandlebarsTemplates.outinvites(invite);
               out.append(inviteHTML);
               invites.append(out); 
-              $("#content").append(invites);
+              out.hide();
               });
          } else {
             out.append("<p>You don't have any outgoing invites currently</p>");
             invites.append(out);
-            out.hide();
+           $("#content").append(invites);
         }
       });
   });
@@ -207,6 +207,13 @@ $(document).on('ready page:load', function(){
         $.get("/updatecontact/"+id).done(function(){
           alert("Conctact added!");
           location.href= "/";
+        });
+      });
+
+      $("#content").on("click", ".signout", function(e){
+        e.preventDefault(); 
+        $.get("/users/sign_out").done(function(){
+          location.href="/";
         });
       });
 

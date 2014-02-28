@@ -1,10 +1,11 @@
-<div class="ind_meet" data-id={{id}}>  
+<div class="centered ind_meet" data-id={{id}}>  
 		      <p class="address">{{address}}</p>
 		      {{showdate}} {{showtime}}<br>
 		     {{#each users}}
    			  {{this.name}}<br>
 			{{/each}}
-
+			<br>
+			<br>
 
 <div class="mapstyle" id="map-canvas-{{id}}"></div>
 <input class="decl_meet" data-id={{id}} type="submit" value="Cancel">
