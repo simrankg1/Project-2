@@ -94,7 +94,7 @@ hr { display: block; height: 0px; border:0; border-top: 2px solid #19B5FE;
 	width: 200px; 
 	margin:auto;
 	position: relative !important;
-	bottom:75px;
+	bottom:50px;
 	left:0px;
 	right:0px;
  }
@@ -258,12 +258,13 @@ hr { display: block; height: 0px; border:0; border-top: 2px solid #19B5FE;
 .datetime{
 	position:relative;
 	float:left;
-	font-size:36px;
+	font-size:32px;
 }
 .addressusers {
 	position:relative;
 	float:right;
 	font-size:22px;
+	width:150px;
 }
 
 
