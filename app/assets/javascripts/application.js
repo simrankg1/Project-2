@@ -254,7 +254,7 @@ $(document).on('ready page:load', function(){
     function showmeets(){
     // e.preventDefault();
     $("#content").empty();
-    var meets = $("<div id=\"meets\"><a href=\"/contacts\"><button id=\"newmeetbtn\"> New Meet </button></a></div>");
+    var meets = $("<div id=\"meets\"><a id=\"newmeet_link\" href=\"/contacts\"><button id=\"newmeetbtn\"> New Meet </button></a></div>");
     var meet_list = $("<div id=\"meet_container\"> </div>");
     $.get("/meets.json").done(function(data){
       
