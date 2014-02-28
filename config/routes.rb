@@ -9,8 +9,8 @@ Project2::Application.routes.draw do
   get "/contacts" => 'invites#contacts' 
   get "/getcontacts" => "meets#contacts"
 
-  get '/newcontact', to: 'contacts#new'
-  post '/addcontact', to: 'contacts#add', as: :add_contact
+  get '/newcontact', to: 'contacts#newcontact'
+  post '/addcontact', to: 'contacts#addcontact', as: :add_contact
   get '/updatecontact/:id', to: 'contacts#update'
   get '/contact/:id', to: 'contacts#show'
   get 'invites/:id/confirm', to: 'invites#confirm' 
