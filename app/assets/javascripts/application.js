@@ -121,12 +121,14 @@ $(document).on('ready page:load', function(){
         var id = $(this).data('id');
         $.get("/invites/"+id+".json").done(function(data){
          maketime.apply(data);
+         
          initialize_map.apply(data);
             var incinviteHTML = HandlebarsTemplates.incinvite(data);
               $("#content").empty();
-              var map = $("#map-canvas");
               $("#content").append(incinviteHTML);
+              var map = $("#map-canvas");
               $(".s_out_inv").append(map);
+         
         });
       });
 
@@ -231,18 +233,30 @@ $(document).on('ready page:load', function(){
 
 
     function initialize_map() {
-    var latlng = new google.maps.LatLng(this.lat, this.lng);
-    var mapOptions = {
-      zoom: 16,
-      center: latlng,
-      mapTypeControl: false
-    };
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    var marker = new google.maps.Marker({
-      map: map,
-      position: latlng
-    });
+
+    var map_canvas = document.getElementById("map-canvas");
+    
+    if(map_canvas)
+    {
+      var latlng = new google.maps.LatLng(this.lat, this.lng);
+      var mapOptions = {
+        zoom: 16,
+        center: latlng,
+        mapTypeControl: false
+      };
+
+      var map = new google.maps.Map(map_canvas, mapOptions);
+      var marker = new google.maps.Marker({
+        map: map,
+        position: latlng
+      });
     }
+    else
+    {
+      $('#content').append('<div id=\"map-canvas\"></div>');
+      initialize_map();
+    };
+    };
 
 
 
