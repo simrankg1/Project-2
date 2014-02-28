@@ -11,13 +11,13 @@
  *= require_self
  *= require_tree .
  */
-
+/*
 h1, h2, p, a, label {
   color: #00059C;
 }
 
 h1 {
-  font-family: Calibri, sans-serif;
+  font-family: 'Varela Round', sans-serif;
 }
 
 p {
@@ -41,13 +41,43 @@ input[type="submit"] {
   width: 160px;
   height: 30px;
   font-size: 15px;
+}*/
+
+/*--------------Element Styling-------------*/
+
+html, body{
+  	height:90%;
+  	font-family: 'Varela Round', sans-serif;
+  	background-color: #fff;
+  	color:black;
+  }
+
+body {
+  margin-top: 100px;
 }
+
+button {
+  background-color:  #00059C;
+  border: none;
+}
+
+button a {
+	 color:#fff;
+}
+
+ul {
+  list-style: none;
+
+}
+
+
+/*---------------Map Styling--------------*/
 
 .mapstyle { 
 	height: 200px; 
 	width: 200px; 
 	margin:auto;
-	position: fixed !important;
+	position: relative !important;
 	bottom:75px;
 	left:0px;
 	right:0px;
@@ -61,26 +91,9 @@ input[type="submit"] {
 }
 
 
-html, body{
-  	height:90%;
-  	font-family: 'Open Sans', sans-serif;
-  	background-color: White;
-  	color:red;
-  }
-  /** {
-  	border:2px solid black;
-  }*/
+/*-------------App Header-------------*/
+/*--------And General for the App-------*/
 
-a {
-	/*color:#fff;*/
-} 
-a:link {
-	/*color:#fff;*/
-}
-
-body {
-  margin-top: 100px;
-}
 
  #app_name{
  	text-align: center;
@@ -89,11 +102,32 @@ body {
 	left:0;
 	top:0;
 	width:95%;
-  font-family: 'Engagement', sans-serif;
+  /*font-family: 'Varela Round', sans-serif;*/
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 75px;
   color: #00059C;
  }
 
+
+ .hidden{
+	display:none;
+}
+
+
+.centered {
+	position:fixed;
+	top:110px;
+	left:0px;
+	right:0px;
+	height:70%;
+	overflow-y:auto;
+	width:100%;
+	text-align: center;
+	
+}
+
+
+/*----------------NAVBAR---------------*/
  .nav{
     list-style:none;
     margin:0;
@@ -104,7 +138,7 @@ body {
     bottom:0;
     left:0;
     width:100%;
-    background-color: #000363;
+    background-color: #000;
     opacity:.9;
 }
 .nav li{
@@ -121,13 +155,17 @@ body {
     
 }
 
+
+/*--------------Contacts----------------*/
+
+
 #contacts {
-	position:fixed;
+/*	position:fixed;
 	top:90px;
 	height:70%;
 	overflow-y:auto;
 	width:80%;
-	text-align: center;
+	text-align: center;*/
 }
 
 #contacts li {
@@ -138,96 +176,39 @@ body {
 	margin-top:50px;
 	padding:0;
 	text-align: center;
-	position:fixed;
-	left:0;
+	position:relative;
 	top:0;
 	width:100%;
+	margin-left:auto;
+	margin-right:auto;
 	/*background-color:#fff*/;
 	}	
 
-.hidden{
-	display:none;
-}
 
+
+
+/*----------Meets-------------*/
 
 .meets {
-	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:scroll;
-	width:80%;
-	text-align: center;
+	
 }
 
-#invites{
-	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:scroll;
-	width:80%;
-	text-align: center;
-}
-
-#profile {
-	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:auto;
-	width:80%;
-	text-align: center;
-}
-
-button {
-  background-color: Red;
-  border: none;
-}
-
-ul {
-  list-style: none;
-
-}
-
-.ind {
-	height:100px;
-	width: 250px;
+div .meet :hover {
+	background-color:#333;
+	opacity:.9;
 }
 
 .meet {
-  background-color: White;
-  width: 400px;
+  background-color: #FFF;
+  min-width: 250px;
   margin: 20px auto;
-  border-radius: 5px;
+
 }
 
 .meet a {
   text-decoration: none;
 }
 
-.inc_invite :hover{
-	background-color: blue;
-}
-
-.out_invite :hover{
-	background-color:yellow;
-}
-
-.s_inc_inv{
-	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:scroll;
-	width:80%;
-	text-align: center;
-}
-
-.s_out_inv{
-	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:scroll;
-	width:80%;
-	text-align: center;
-}
 
 #newmeetbtn {
   margin-top: 50px;
@@ -237,7 +218,7 @@ ul {
 	position:fixed;
 	top:90px;
 	height:70%;
-	overflow-y:scroll;
+	overflow-y:auto;
 	width:80%;
 	text-align: center;
 }
@@ -249,10 +230,70 @@ ul {
 #newmeet_link > button {
   width: 240px;
   height: 45px;
-  border-radius: 6px;
+  /*border-radius: 6px;*/
   margin-bottom: 10px;
-  margin-left: 9%;
   font-size: 20px;
   color: White;
   background-color: #00059C;
+  border: 3px solid white;
 }
+
+
+
+/*-----------Invites--------------*/
+
+#invites{
+	/*position:fixed;
+	top:90px;
+	height:70%;
+	overflow-y:auto;
+	width:80%;
+	text-align: center;*/
+}
+
+
+.inc_invite :hover{
+	background-color: blue;
+}
+
+.out_invite :hover{
+	background-color:yellow;
+}
+
+
+
+.s_inc_inv{
+	position:fixed;
+	top:90px;
+	height:70%;
+	overflow-y:auto;
+	width:80%;
+	text-align: center;
+}
+
+.s_out_inv{
+	position:fixed;
+	top:90px;
+	height:70%;
+	overflow-y:auto;
+	width:80%;
+	text-align: center;
+}
+
+
+/*-----------Profile--------------*/
+
+
+#profile {
+	/*position:fixed;
+	top:90px;
+	height:70%;
+	overflow-y:auto;
+	width:80%;
+	text-align: center;*/
+}
+
+
+
+
+
