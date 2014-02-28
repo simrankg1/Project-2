@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>Project2</title>
-  <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'>
+<link href='/assets/ASansreg.ttf' rel='stylesheet' type='text/css'>
  <script src="http://momentjs.com/downloads/moment.min.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvHawiMNKSViHecR02Ns3b0aBjqNSzNvk&sensor=false"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -15,7 +15,7 @@
 <%if user_signed_in? %>
 <element id="user_id" data-id="<%=current_user.id%>"></element>
 <%end%>
-<h1 id="app_name">Powwow</h1>
+<h1 id="app_name">Powow</h1>
 
 <p class="notice"> <%=notice %> </p>
 <p class="alert"> <%=alert %> </p>
