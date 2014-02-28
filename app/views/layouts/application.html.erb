@@ -6,8 +6,8 @@
 <link href='/assets/ASansreg.ttf' rel='stylesheet' type='text/css'>
  <script src="http://momentjs.com/downloads/moment.min.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvHawiMNKSViHecR02Ns3b0aBjqNSzNvk&sensor=false"></script>
- <script src="/assets/application.js"></script>
- <link href="/assets/application.css" rel="stylesheet" type="text/css">
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 </head>
