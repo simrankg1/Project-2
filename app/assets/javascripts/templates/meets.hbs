@@ -1,9 +1,14 @@
-<hr>
+
      	<div class="meet" data-id={{id}}>  
-		     <span>{{address}}<br>
-		     {{showdate}} {{showtime}}<br>
+     	<hr>
+		    <div class="datetime"> 
+		    <span>{{showdate}}<br><br>{{showtime}}</span>
+		    </div>
+		    <div class="addressusers">
+		    <span> {{address}}<br><br>
 		     {{#each users}}
    			 {{this.name}}<br>
 			{{/each}}</span>
+			</div>
     	</div>
 
