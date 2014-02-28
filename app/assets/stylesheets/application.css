@@ -12,6 +12,14 @@
  *= require_tree .
  */
 
+h1, h2, p, a, label {
+  color: #00059C;
+}
+
+p {
+  margin-left: 20px;
+}
+
 .mapstyle { 
 	height: 200px; 
 	width: 200px; 
@@ -208,11 +216,12 @@ ul {
 }
 
 #newmeet_link > button {
-  width: 200px;
-  height: 30px;
+  width: 240px;
+  height: 45px;
   border-radius: 6px;
-  margin-top: 100px;
-  margin-left: 10%;
+  margin-top: 90px;
+  margin-bottom: 10px;
+  margin-left: 9%;
   font-size: 20px;
   color: White;
   background-color: #00059C;
