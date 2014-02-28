@@ -89,7 +89,7 @@ $(document).on('ready page:load', function(){
               maketime.apply(invite);
               var inviteHTML = HandlebarsTemplates.outinvites(invite);
               out.append(inviteHTML);
-              invites.append(inc); 
+              invites.append(out); 
               $("#content").append(invites);
               });
          } else {
