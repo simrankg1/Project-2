@@ -25,7 +25,7 @@ $(document).on('ready page:load', function(){
     e.preventDefault();
     $("#content").empty();
     $.get("/getcontacts.json").done(function(data){
-      var contacts = $("<div id=\"contacts\"><h1>Contacts</h1><button><a href=\"/newcontact\">Add contact</a></button></div>");
+      var contacts = $("<div class=\"centered\" id=\"contacts\"><h1>Contacts</h1><button><a href=\"/newcontact\">Add contact</a></button></div>");
       var confirmed = $("<div id=\"confirmed_contacts\"></div>");
       var inc = $("<div id=\"inc_contacts\"><h3>Pending incoming</h3></div>");
       var out = $("<div id=\"out_contacts\"><h3>Pending outgoing</h3></div>");
@@ -66,7 +66,7 @@ $(document).on('ready page:load', function(){
       $("#content").empty();
       $.get("/invites.json").done(function(data){
 
-        var invites = $("<div id=\"invites\"><h2>Invites</h2><button id=\"incbtn\">incoming</button>   <button id=\"outbtn\">outgoing</button></div>");
+        var invites = $("<div class=\"centered\" id=\"invites\"><h2>Invites</h2><button id=\"incbtn\">incoming</button>   <button id=\"outbtn\">outgoing</button></div>");
         var inc = $("<div id=\"inc_invites\"> </div>");
         var out = $("<div id=\"out_invites\"> </div>");
 
@@ -262,7 +262,7 @@ $(document).on('ready page:load', function(){
     function showmeets(){
     // e.preventDefault();
     $("#content").empty();
-    var meets = $("<div id=\"meets\"><a id=\"newmeet_link\" href=\"/contacts\"><button id=\"newmeetbtn\"> New Meet </button></a></div>");
+    var meets = $("<div class=\"centered\" id=\"meets\"><a id=\"newmeet_link\" href=\"/contacts\"><button id=\"newmeetbtn\"> New Meet </button></a></div>");
     var meet_list = $("<div id=\"meet_container\"> </div>");
     $.get("/meets.json").done(function(data){
       
