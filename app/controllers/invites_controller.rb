@@ -89,13 +89,8 @@ before_filter :authenticate_user!
     @invite = Invite.find(params[:id])
 
     respond_to do |f| 
-<<<<<<< HEAD
-      f.json {render :json => @invite.to_json{include :users}}
+      f.json {render :json => @invite.as_json(:include => [:users])}
     end
-=======
-    f.json {render :json => @invite.as_json(:include => [:users])}
-  end
->>>>>>> upstream/master
   end
 
   def edit
