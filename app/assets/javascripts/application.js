@@ -126,7 +126,7 @@ $(document).on('ready page:load', function(){
               $("#content").append(incinviteHTML);
               initialize_map.apply(data);
               var map = $("#map-canvas-"+id);
-              $(".s_out_inv").append(map);   
+              $(".s_out_inv").append(map);
         });
       });
 
