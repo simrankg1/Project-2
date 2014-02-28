@@ -12,12 +12,23 @@
  *= require_tree .
  */
 
+.mapstyle { 
+	height: 200px; 
+	width: 200px; 
+	margin:auto;
+	position: fixed !important;
+	bottom:75px;
+	left:0px;
+	right:0px;
+ }
+ 
 #map-canvas {
   height: 200px;
   width: 200px;
   position: absolute;
   top: 310px;
 }
+
 
 html, body{
   	height:90%;
