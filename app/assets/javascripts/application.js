@@ -178,6 +178,11 @@ $(document).on('ready page:load', function(){
           showmeets();
         });
       });
+      
+      $("#content").on("click", ".add_con", function(){
+        var id = $(this).data('id');
+        $.get("/updatecontact/"+id);
+      });
 
 
 

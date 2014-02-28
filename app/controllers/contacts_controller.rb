@@ -22,8 +22,8 @@ class ContactsController < ActionController::Base
   def update
     id = params[:id]
     user = User.find_by_id(id)
-    if !user.users.include?(current_user)
     
+    if !user.users.include?(current_user)
       send_text_message(id, "#{current_user.name} wants to add you as a contact!")
       flash[:alert] = "Successfully added #{user.name}!"
     else
