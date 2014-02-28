@@ -288,11 +288,19 @@ hr { display: block; height: 0px; border:0; border-top: 2px solid #19B5FE;
 
 }
 
-.inc_invite :hover{
+.inc_invite{
+	 clear:both;
+  min-width: 250px;
+  margin: 20px auto;
+  color:#fff;
 	/*background-color: blue;*/
 }
 
-.out_invite :hover{
+.out_invite{
+	 clear:both;
+  min-width: 250px;
+  margin: 20px auto;
+  color:#fff;
 	/*background-color:yellow;*/
 }
 

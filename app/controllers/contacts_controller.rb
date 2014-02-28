@@ -2,10 +2,10 @@ class ContactsController < ActionController::Base
 
   include ApplicationHelper
 
-  def new
+  def newcontact
   end
 
-  def add
+  def addcontact
     
     username = params[:username]
     result = User.find_by(username: username) 
