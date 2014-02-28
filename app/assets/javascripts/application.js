@@ -121,9 +121,12 @@ $(document).on('ready page:load', function(){
         var id = $(this).data('id');
         $.get("/invites/"+id+".json").done(function(data){
          maketime.apply(data);
+         initialize_map.apply(data);
             var incinviteHTML = HandlebarsTemplates.incinvite(data);
               $("#content").empty();
+              var map = $("#map-canvas");
               $("#content").append(incinviteHTML);
+              $(".s_out_inv").append(map);
         });
       });
 
@@ -131,9 +134,12 @@ $(document).on('ready page:load', function(){
         var id = $(this).data('id');
         $.get("/invites/"+id+".json").done(function(data){
           maketime.apply(data);
+          initialize_map.apply(data);
             var outinviteHTML = HandlebarsTemplates.outinvite(data);
               $("#content").empty();
               $("#content").append(outinviteHTML);
+              var map = $("#map-canvas");
+              $(".s_out_inv").append(map);
         });
       });
 
@@ -141,9 +147,12 @@ $(document).on('ready page:load', function(){
         var id= $(this).data('id');
         $.get("/meets/"+id+".json").done(function(data){
           maketime.apply(data);
+          initialize_map.apply(data);
           var meetHTML = HandlebarsTemplates.meet(data);
           $("#content").empty();
+          var map = $("#map-canvas");
           $("#content").append(meetHTML);
+          $(".ind_meet").append(map);
         });
       });
 
@@ -178,7 +187,7 @@ $(document).on('ready page:load', function(){
           showmeets();
         });
       });
-      
+
       $("#content").on("click", ".add_con", function(){
         var id = $(this).data('id');
         $.get("/updatecontact/"+id);
@@ -220,6 +229,20 @@ $(document).on('ready page:load', function(){
     }
 
 
+
+    function initialize_map() {
+    var latlng = new google.maps.LatLng(this.lat, this.lng);
+    var mapOptions = {
+      zoom: 16,
+      center: latlng,
+      mapTypeControl: false
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    var marker = new google.maps.Marker({
+      map: map,
+      position: latlng
+    });
+    }
 
 
 
