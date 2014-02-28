@@ -2,7 +2,9 @@
 {{address}}<br>
 {{showdate}}<br>
 {{showtime}}<br>
-
+ {{#each users}}
+   			  {{this.name}}<br>
+			{{/each}}
 <br>
 <br>
 <div class="mapstyle" id="map-canvas-{{id}}"></div>
