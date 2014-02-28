@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+<element id="hide_navbar"></element>
+
+=======
 <div class="centered">
+>>>>>>> upstream/master
 <h1> Your Contacts </h1>
 
 <% if current_user.users.empty? %>
@@ -8,7 +13,7 @@
 <% else %>
 
   <%= form_for @invite, url: select_contacts_path do |x| %> 
-    <% current_user.users.each do |a| %>
+    <% @confirmed_users.each do |a| %>
       <%= check_box("contacts", "add", { :multiple => true}, a.id, nil) %>
       <%= label_tag a.name %><br>
   <% end %> 

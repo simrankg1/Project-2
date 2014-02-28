@@ -311,10 +311,16 @@ $(document).on('ready page:load', function(){
     });
   });
 
+  function hide_navbar(){
+    if ( document.getElementById('hide_navbar') ) {
+      $('.nav').hide();
+    } else {
+      $('.nav').show();
+    }
+  }
 
   showmeets();
-
-
+  hide_navbar();
 
 
 });
