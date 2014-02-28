@@ -27,7 +27,7 @@ class ContactsController < ActionController::Base
       send_text_message(id, "#{current_user.name} wants to add you as a contact!")
       flash[:alert] = "Successfully added #{user.name}!"
     else
-      send_text_message(id, "#{current_user.name} confirmed your invite!")
+      send_text_message(id, "#{current_user.name} added you as a contact!")
     end
 
     current_user.users << user
