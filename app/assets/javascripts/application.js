@@ -77,11 +77,13 @@ $(document).on('ready page:load', function(){
               inc.append(inviteHTML);
               invites.append(inc); 
               $("#content").append(invites);
+              $("#incbtn").addClass("active");
               });
          } else {
             inc.append("<p>You don't have any incoming invites currently</p>");
             invites.append(inc);
             $("#content").append(invites);
+            $("#incbtn").addClass("active");
         }
 
           if (data.out_invites[0] != null) {
@@ -114,6 +116,8 @@ $(document).on('ready page:load', function(){
           e.stopPropagation();
           $("#out_invites").hide();
           $("#inc_invites").show();
+          $("#outbtn").removeClass("active");
+          $("#incbtn").addClass("active");
       });
 
       $("#content").on('click', "#outbtn", function(e){
@@ -121,6 +125,8 @@ $(document).on('ready page:load', function(){
         e.stopPropagation();
         $("#inc_invites").hide();
         $("#out_invites").show();
+        $("#incbtn").removeClass("active");
+        $("#outbtn").addClass("active");
       });
 
       $("#content").on('click', ".inc_invite", function(){
