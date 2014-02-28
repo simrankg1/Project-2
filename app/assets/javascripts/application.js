@@ -126,8 +126,7 @@ $(document).on('ready page:load', function(){
               $("#content").append(incinviteHTML);
               initialize_map.apply(data);
               var map = $("#map-canvas-"+id);
-              $(".s_out_inv").append(map);
-         
+              $(".s_out_inv").append(map);   
         });
       });
 
@@ -251,14 +250,6 @@ $(document).on('ready page:load', function(){
       position: latlng
     });
     }
-    else
-    {
-      $('#content').append('<div id=\"map-canvas\"></div>');
-      initialize_map();
-    };
-    };
-
-
 
     function showmeets(){
     // e.preventDefault();
