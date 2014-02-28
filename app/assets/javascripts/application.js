@@ -27,8 +27,8 @@ $(document).on('ready page:load', function(){
     $.get("/getcontacts.json").done(function(data){
       var contacts = $("<div class=\"centered\" id=\"contacts\"><h1>Contacts</h1><button><a href=\"/newcontact\">Add contact</a></button></div>");
       var confirmed = $("<div id=\"confirmed_contacts\"></div>");
-      var inc = $("<hr><div id=\"inc_contacts\"><h3>Pending incoming</h3></div>");
-      var out = $("<hr><div id=\"out_contacts\"><h3>Pending outgoing</h3></div>");
+      var inc = $("<div id=\"inc_contacts\"><h3>Pending incoming</h3></div>");
+      var out = $("<div id=\"out_contacts\"><h3>Pending outgoing</h3></div>");
 
           $(data.confirmed_contacts).each(function(index, contact){
             var contactHTML = HandlebarsTemplates.confirmedcontacts(contact);
