@@ -12,12 +12,17 @@
  *= require_tree .
  */
 
-#map-canvas { height: 200px; width: 200px; margin:auto; }
+#map-canvas {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  top: 310px;
+}
 
 html, body{
   	height:90%;
   	font-family: 'Open Sans', sans-serif;
-  	background-color: #D5D5DE;
+  	background-color: White;
   	color:red;
   }
   /** {
@@ -34,24 +39,26 @@ a:link {
  #app_name{
  	text-align: center;
  	margin-top:0;
- 	/*color:#fff;*/
 	position:fixed;
 	left:0;
 	top:0;
 	width:95%;
+  font-family: 'Engagement', sans-serif;
+  font-size: 75px;
+  color: #00059C;
  }
 
  .nav{
     list-style:none;
     margin:0;
-    margin-bottom:5px;
-    padding:15px 0 0 0;
+    margin-bottom:0;
+    padding:15px 0;
     text-align:center;
     position:fixed;
     bottom:0;
     left:0;
     width:100%;
-    background-color:black;
+    background-color: #000363;
     opacity:.9;
 }
 .nav li{
@@ -187,4 +194,15 @@ ul {
 	overflow-y:scroll;
 	width:80%;
 	text-align: center;
+}
+
+#newmeet_link > button {
+  width: 200px;
+  height: 30px;
+  border-radius: 6px;
+  margin-top: 100px;
+  margin-left: 10%;
+  font-size: 20px;
+  color: White;
+  background-color: #00059C;
 }
