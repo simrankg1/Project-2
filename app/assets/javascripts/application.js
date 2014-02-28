@@ -251,8 +251,6 @@ $(document).on('ready page:load', function(){
     });
     }
 
-
-
     function showmeets(){
     // e.preventDefault();
     $("#content").empty();
