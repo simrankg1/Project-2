@@ -68,12 +68,15 @@ before_filter :authenticate_user!
   end
 
   def destroy
-    id = params[:id]
-    meet = Meet.find_by_id(id)
+    meet_id = params[:id]
+    meet = Meet.find_by_id(meet_id)
 
-    users = meet.users.where('id != ?', current_user.id)
+    users = meet.users
+
     users.each do |u|
-      send_text_message(u.id, "#{current_user.name} cancelled your meet on #{meet.date}")
+      unless u.id == current_user.id
+        send_text_message(u.id, "#{current_user.name} cancelled your meet on #{meet.date}")
+      end
     end
 
     meet.destroy
