@@ -9,9 +9,10 @@ before_filter :authenticate_user!
     @inc_invites = @user.invites.where('ownerid != ?', @user.id)  
     respond_to do |f|
       f.json {render :json => {
-         :out_invites => @out_invites,
-         :inc_invites => @inc_invites
+        :out_invites => @out_invites.as_json(:include => [:users]),
+         :inc_invites => @inc_invites.as_json(:include => [:users])
           }}
+     
       end
   end
 
@@ -83,7 +84,7 @@ before_filter :authenticate_user!
     @invite = Invite.find(params[:id])
 
     respond_to do |f| 
-    f.json {render :json => @invite.to_json{include :users}}
+    f.json {render :json => @invite.as_json(:include => [:users])}
   end
   end
 
