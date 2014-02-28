@@ -121,12 +121,11 @@ $(document).on('ready page:load', function(){
         var id = $(this).data('id');
         $.get("/invites/"+id+".json").done(function(data){
          maketime.apply(data);
-         
-         initialize_map.apply(data);
             var incinviteHTML = HandlebarsTemplates.incinvite(data);
               $("#content").empty();
               $("#content").append(incinviteHTML);
-              var map = $("#map-canvas");
+              initialize_map.apply(data);
+              var map = $("#map-canvas-"+id);
               $(".s_out_inv").append(map);
          
         });
@@ -136,11 +135,11 @@ $(document).on('ready page:load', function(){
         var id = $(this).data('id');
         $.get("/invites/"+id+".json").done(function(data){
           maketime.apply(data);
-          initialize_map.apply(data);
             var outinviteHTML = HandlebarsTemplates.outinvite(data);
               $("#content").empty();
               $("#content").append(outinviteHTML);
-              var map = $("#map-canvas");
+              initialize_map.apply(data);
+              var map = $("#map-canvas-"+id);
               $(".s_out_inv").append(map);
         });
       });
@@ -149,11 +148,11 @@ $(document).on('ready page:load', function(){
         var id= $(this).data('id');
         $.get("/meets/"+id+".json").done(function(data){
           maketime.apply(data);
-          initialize_map.apply(data);
           var meetHTML = HandlebarsTemplates.meet(data);
           $("#content").empty();
-          var map = $("#map-canvas");
           $("#content").append(meetHTML);
+          initialize_map.apply(data);
+          var map = $("#map-canvas-"+id);
           $(".ind_meet").append(map);
         });
       });
@@ -164,12 +163,15 @@ $(document).on('ready page:load', function(){
           var contactHTML= HandlebarsTemplates.contact(data);
           $("#content").empty();
           $("#content").append(contactHTML);
+          location.href= "/";
         });
       });
 
       $("#content").on("click", ".conf_inv", function(){
        var id= $(this).data('id');
-        $.get("/invites/"+id+"/confirm");
+        $.get("/invites/"+id+"/confirm").done(function(){
+          location.href= "/";
+        });
       });
 
       $("#content").on("click", ".decl_inv", function(){
@@ -177,6 +179,8 @@ $(document).on('ready page:load', function(){
        $.ajax({
         type: "delete",
         url: "/invites/"+id
+        }).done(function(){
+          location.href= "/";
         });
       });
 
@@ -186,6 +190,7 @@ $(document).on('ready page:load', function(){
         type: "delete",
         url: "/meets/"+id
         }).done(function(){
+          location.href= "/";
           showmeets();
         });
       });
@@ -233,23 +238,18 @@ $(document).on('ready page:load', function(){
 
 
     function initialize_map() {
-
-    var map_canvas = document.getElementById("map-canvas");
-    
-    if(map_canvas)
-    {
-      var latlng = new google.maps.LatLng(this.lat, this.lng);
-      var mapOptions = {
-        zoom: 16,
-        center: latlng,
-        mapTypeControl: false
-      };
-
-      var map = new google.maps.Map(map_canvas, mapOptions);
-      var marker = new google.maps.Marker({
-        map: map,
-        position: latlng
-      });
+    var id = this.id;
+    var latlng = new google.maps.LatLng(this.lat, this.lng);
+    var mapOptions = {
+      zoom: 16,
+      center: latlng,
+      mapTypeControl: false
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    var marker = new google.maps.Marker({
+      map: map,
+      position: latlng
+    });
     }
     else
     {
