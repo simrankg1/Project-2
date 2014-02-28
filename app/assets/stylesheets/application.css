@@ -16,8 +16,31 @@ h1, h2, p, a, label {
   color: #00059C;
 }
 
+h1 {
+  font-family: Calibri, sans-serif;
+}
+
 p {
-  margin-left: 20px;
+  text-align: center;
+}
+
+label {
+  line-height: 30px;
+  font-size: 20px;
+}
+
+input[type="checkbox"] {
+  margin-bottom: 20px;
+}
+
+input[type="submit"] {
+  background-color: #00059C;
+  color: White;
+  border: none;
+  border-radius: 2px;
+  width: 160px;
+  height: 30px;
+  font-size: 15px;
 }
 
 .mapstyle { 
@@ -53,6 +76,10 @@ a {
 } 
 a:link {
 	/*color:#fff;*/
+}
+
+body {
+  margin-top: 100px;
 }
 
  #app_name{
@@ -215,11 +242,14 @@ ul {
 	text-align: center;
 }
 
+#newmeet_link {
+  margin: auto;
+}
+
 #newmeet_link > button {
   width: 240px;
   height: 45px;
   border-radius: 6px;
-  margin-top: 90px;
   margin-bottom: 10px;
   margin-left: 9%;
   font-size: 20px;
