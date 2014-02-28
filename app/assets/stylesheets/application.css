@@ -43,13 +43,22 @@ input[type="submit"] {
   font-size: 15px;
 }*/
 
+
+
+@font-face
+{
+font-family: ASansReg;
+src: url(ASansreg.ttf);
+}
+
 /*--------------Element Styling-------------*/
 
 html, body{
   	height:90%;
-  	font-family: 'Varela Round', sans-serif;
-  	background-color: #fff;
-  	color:black;
+  	font-family: 'ASansreg', sans-serif;
+  	background-color: #000;
+  	color:#fff;
+  	opacity:.85;
   }
 
 body {
@@ -57,8 +66,9 @@ body {
 }
 
 button {
-  background-color:  #00059C;
-  border: none;
+  background-color: #000;
+  border: 3px solid #19B5FE;
+  opacity:.85;
 }
 
 button a {
@@ -67,8 +77,14 @@ button a {
 
 ul {
   list-style: none;
-
 }
+
+input {
+	background-color:#000;
+}
+
+hr { display: block; height: 0px; border:0; border-top: 2px solid #19B5FE;
+   }
 
 
 /*---------------Map Styling--------------*/
@@ -78,7 +94,7 @@ ul {
 	width: 200px; 
 	margin:auto;
 	position: relative !important;
-	bottom:75px;
+	bottom:50px;
 	left:0px;
 	right:0px;
  }
@@ -103,9 +119,12 @@ ul {
 	top:0;
 	width:95%;
   /*font-family: 'Varela Round', sans-serif;*/
-  font-family: 'Josefin Sans', sans-serif;
+ font-family: 'Didact Gothic', sans-serif;
+ font-weight: 200;
   font-size: 75px;
-  color: #00059C;
+  /*color: #00059C;*/
+  color:#19B5FE;
+  opacity: .9;
  }
 
 
@@ -139,12 +158,13 @@ ul {
     left:0;
     width:100%;
     background-color: #000;
-    opacity:.9;
+    opacity:.85;
+    border-top: 3px solid #19B5FE;
 }
 .nav li{
 	height:100%;
     display:inline;
-    padding:0% 2% 0% 2%;
+    padding:0% 3% 0% 3%;
 }
 .nav a{
     display:inline;
@@ -160,12 +180,12 @@ ul {
 
 
 #contacts {
-/*	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:auto;
-	width:80%;
-	text-align: center;*/
+	color:#fff;
+	font-size:24px;
+}
+
+#contacts a{
+	text-decoration: none;
 }
 
 #contacts li {
@@ -193,16 +213,17 @@ ul {
 	
 }
 
-div .meet :hover {
+/*div .meet :hover {
 	background-color:#333;
 	opacity:.9;
-}
+}*/
 
 .meet {
-  background-color: #FFF;
+  /*background-color: #FFF;*/
+  clear:both;
   min-width: 250px;
   margin: 20px auto;
-
+  color:#fff;
 }
 
 .meet a {
@@ -215,12 +236,7 @@ div .meet :hover {
 }
 
 .ind_meet {
-	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:auto;
-	width:80%;
-	text-align: center;
+	color: #fff;
 }
 
 #newmeet_link {
@@ -233,51 +249,48 @@ div .meet :hover {
   /*border-radius: 6px;*/
   margin-bottom: 10px;
   font-size: 20px;
-  color: White;
-  background-color: #00059C;
-  border: 3px solid white;
+  color: #fff;
+  background-color: #000;
+  opacity:.9;
+  border: 3px solid #2ECC71;
 }
 
+.datetime{
+	position:relative;
+	float:left;
+	font-size:32px;
+}
+.addressusers {
+	position:relative;
+	float:right;
+	font-size:22px;
+	width:150px;
+}
 
 
 /*-----------Invites--------------*/
 
 #invites{
-	/*position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:auto;
-	width:80%;
-	text-align: center;*/
+	color:#fff;
 }
 
 
 .inc_invite :hover{
-	background-color: blue;
+	/*background-color: blue;*/
 }
 
 .out_invite :hover{
-	background-color:yellow;
+	/*background-color:yellow;*/
 }
 
 
 
 .s_inc_inv{
-	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:auto;
-	width:80%;
-	text-align: center;
+	
 }
 
 .s_out_inv{
-	position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:auto;
-	width:80%;
-	text-align: center;
+
 }
 
 
@@ -285,12 +298,12 @@ div .meet :hover {
 
 
 #profile {
-	/*position:fixed;
-	top:90px;
-	height:70%;
-	overflow-y:auto;
-	width:80%;
-	text-align: center;*/
+	color:#fff;
+	font-size:20px;
+}
+
+.signout{
+	border: 2px solid #EF4836;
 }
 
 
