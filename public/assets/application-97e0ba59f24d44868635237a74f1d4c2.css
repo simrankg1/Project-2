@@ -8,39 +8,17 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
+
+
  */
+
 
 h1, h2, p, a, label {
   color: #00059C;
 }
 
-h1 {
-  font-family: Calibri, sans-serif;
-}
-
 p {
-  text-align: center;
-}
-
-label {
-  line-height: 30px;
-  font-size: 20px;
-}
-
-input[type="checkbox"] {
-  margin-bottom: 20px;
-}
-
-input[type="submit"] {
-  background-color: #00059C;
-  color: White;
-  border: none;
-  border-radius: 2px;
-  width: 160px;
-  height: 30px;
-  font-size: 15px;
+  margin-left: 20px;
 }
 
 .mapstyle { 
@@ -76,10 +54,6 @@ a {
 } 
 a:link {
 	/*color:#fff;*/
-}
-
-body {
-  margin-top: 100px;
 }
 
  #app_name{
@@ -242,14 +216,11 @@ ul {
 	text-align: center;
 }
 
-#newmeet_link {
-  margin: auto;
-}
-
 #newmeet_link > button {
   width: 240px;
   height: 45px;
   border-radius: 6px;
+  margin-top: 90px;
   margin-bottom: 10px;
   margin-left: 9%;
   font-size: 20px;
