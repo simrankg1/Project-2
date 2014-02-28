@@ -50,7 +50,11 @@ before_filter :authenticate_user!
     new_meet = Meet.create(parameters)
     new_meet.users << users
     
-    send_text_message(id, "#{current_user.name} confirmed your invite!")
+    users.each do |u|
+      unless u.id == current_user.id
+        send_text_message(u.id, "#{current_user.name} confirmed your invite!")
+      end
+    end
 
     invite.destroy
 

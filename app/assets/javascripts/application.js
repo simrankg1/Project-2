@@ -89,7 +89,7 @@ $(document).on('ready page:load', function(){
               maketime.apply(invite);
               var inviteHTML = HandlebarsTemplates.outinvites(invite);
               out.append(inviteHTML);
-              invites.append(inc); 
+              invites.append(out); 
               $("#content").append(invites);
               });
          } else {
@@ -177,7 +177,6 @@ $(document).on('ready page:load', function(){
       $("#content").on("click", ".conf_inv", function(){
        var id= $(this).data('id');
         $.get("/invites/"+id+"/confirm").done(function(){
-          alert("Conctact added!");
           location.href= "/";
         });
       });
@@ -206,12 +205,10 @@ $(document).on('ready page:load', function(){
       $("#content").on("click", ".add_con", function(){
         var id = $(this).data('id');
         $.get("/updatecontact/"+id).done(function(){
+          alert("Conctact added!");
           location.href= "/";
         });
       });
-
-
-
 
 
 
