@@ -84,13 +84,19 @@ $(document).on('ready page:load', function(){
             $("#content").append(invites);
         }
 
-          $(data.out_invites).each(function(index, invite){
-            maketime.apply(invite);
-            var inviteHTML = HandlebarsTemplates.outinvites(invite);
-            out.append(inviteHTML);
+          if (data.out_invites[0] != null) {
+             $(data.out_invites).each(function(index, invite){
+              maketime.apply(invite);
+              var inviteHTML = HandlebarsTemplates.outinvites(invite);
+              out.append(inviteHTML);
+              invites.append(inc); 
+              $("#content").append(invites);
+              });
+         } else {
+            out.append("<p>You don't have any outgoing invites currently</p>");
+            invites.append(out);
             out.hide();
-            invites.append(out); 
-          });
+        }
       });
   });
 
@@ -171,6 +177,7 @@ $(document).on('ready page:load', function(){
       $("#content").on("click", ".conf_inv", function(){
        var id= $(this).data('id');
         $.get("/invites/"+id+"/confirm").done(function(){
+          alert("Conctact added!");
           location.href= "/";
         });
       });
