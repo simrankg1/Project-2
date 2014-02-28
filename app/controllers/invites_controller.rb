@@ -65,7 +65,12 @@ before_filter :authenticate_user!
 
   def contacts
     @invite= Invite.new
-     
+    @confirmed_users = []
+    current_user.users.each do |u|
+      if current_user.users.include?(u) && u.users.include?(current_user)
+        @confirmed_users << u
+      end
+    end
   end
 
   def select_contacts
@@ -83,8 +88,8 @@ before_filter :authenticate_user!
     @invite = Invite.find(params[:id])
 
     respond_to do |f| 
-    f.json {render :json => @invite.to_json{include :users}}
-  end
+      f.json {render :json => @invite.to_json{include :users}}
+    end
   end
 
   def edit
