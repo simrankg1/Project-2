@@ -1,28 +1,13 @@
-== README
+== Powwow
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Powwow, still in development, is an app for requesting to meet a friend or colleague in a simple, streamlined process. Users select a contact, and suggest a date, time and location.
 
-Things you may want to cover:
+It uses several technologies:
 
-* Ruby version
+* JavaScript, jQuery and AJAX make Powwow almost entirely a single page app.
 
-* System dependencies
+* The Twilio API sends text message alerts when adding contacts and confirming meetings.
 
-* Configuration
+* Google Maps APIs geocode invitation addresses and display maps of meeting and potential meeting locations.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Powwow's styling is only configured for mobile devices, and is optimized for iPhone 5.
