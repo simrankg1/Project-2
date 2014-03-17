@@ -1,4 +1,4 @@
-== Powwow
+# Powwow
 
 Powwow, still in development, is an app for requesting to meet a friend or colleague in a simple, streamlined process. Users select a contact, and suggest a date, time and location.
 
