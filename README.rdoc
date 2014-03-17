@@ -11,3 +11,16 @@ It uses several technologies:
 * Google Maps APIs geocode invitation addresses and display maps of meeting and potential meeting locations.
 
 Powwow's styling is only configured for mobile devices, and is optimized for iPhone 5.
+
+### To launch app
+
+Locally: fork and clone app. From terminal, in app's directory, run:
+
+    bundle install
+    rails s
+
+In web browser, visit:
+
+    http://localhost:3000/
+
+Online: visit [powwowmeet.herokuapp.com](http://powwowmeet.herokuapp.com/users/sign_in) (__NOTE:__ you must have an account to use the app)
