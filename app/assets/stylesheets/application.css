@@ -11,37 +11,7 @@
  *= require_self
  *= require_tree .
  */
-/*
-h1, h2, p, a, label {
-  color: #00059C;
-}
 
-h1 {
-  font-family: 'Varela Round', sans-serif;
-}
-
-p {
-  text-align: center;
-}
-
-label {
-  line-height: 30px;
-  font-size: 20px;
-}
-
-input[type="checkbox"] {
-  margin-bottom: 20px;
-}
-
-input[type="submit"] {
-  background-color: #00059C;
-  color: White;
-  border: none;
-  border-radius: 2px;
-  width: 160px;
-  height: 30px;
-  font-size: 15px;
-}*/
 
 
 
