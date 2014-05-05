@@ -17,6 +17,8 @@ Powwow's styling is only configured for mobile devices, and is optimized for iPh
 Locally: fork and clone app. From terminal, in app's directory, run:
 
     bundle install
+    rake db:create
+    rake db:migrate
     rails s
 
 In web browser, visit:
